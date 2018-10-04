@@ -1,6 +1,6 @@
 package org.logicware.prolog.jpl7.swi;
 
-import static org.logicware.pdb.logging.LoggerConstants.IO;
+import static org.logicware.platform.logging.LoggerConstants.IO;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -11,12 +11,12 @@ import java.util.Iterator;
 
 import org.jpl7.Query;
 import org.jpl7.Term;
-import org.logicware.pdb.logging.LoggerUtils;
-import org.logicware.pdb.prolog.PrologClause;
-import org.logicware.pdb.prolog.PrologEngine;
-import org.logicware.pdb.prolog.PrologProvider;
-import org.logicware.pdb.prolog.PrologQuery;
-import org.logicware.pdb.prolog.PrologTerm;
+import org.logicware.platform.logging.LoggerUtils;
+import org.logicware.prolog.PrologClause;
+import org.logicware.prolog.PrologEngine;
+import org.logicware.prolog.PrologProvider;
+import org.logicware.prolog.PrologQuery;
+import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.jpl7.JplEngine;
 import org.logicware.prolog.jpl7.JplQuery;
 

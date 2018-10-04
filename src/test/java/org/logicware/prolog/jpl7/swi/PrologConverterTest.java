@@ -16,15 +16,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.logicware.pdb.prolog.PrologAtom;
-import org.logicware.pdb.prolog.PrologConverter;
-import org.logicware.pdb.prolog.PrologConverterFactory;
-import org.logicware.pdb.prolog.PrologFloat;
-import org.logicware.pdb.prolog.PrologInteger;
-import org.logicware.pdb.prolog.PrologList;
-import org.logicware.pdb.prolog.PrologStructure;
-import org.logicware.pdb.prolog.PrologTerm;
-import org.logicware.pdb.prolog.PrologVariable;
+import org.logicware.prolog.PrologAtom;
+import org.logicware.prolog.PrologConverter;
+import org.logicware.prolog.PrologConverterFactory;
+import org.logicware.prolog.PrologFloat;
+import org.logicware.prolog.PrologInteger;
+import org.logicware.prolog.PrologList;
+import org.logicware.prolog.PrologStructure;
+import org.logicware.prolog.PrologTerm;
+import org.logicware.prolog.PrologVariable;
 import org.logicware.prolog.jpl7.JplList;
 
 public class PrologConverterTest extends PrologBaseTest {
