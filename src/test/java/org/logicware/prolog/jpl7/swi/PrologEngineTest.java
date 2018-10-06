@@ -1249,7 +1249,7 @@ public class PrologEngineTest extends PrologBaseTest {
 
 	@Test
 	public final void testGetLicense() {
-		assertEquals(Licenses.BSD_3, engine.getLicense());
+		assertEquals(Licenses.LGPL_V3, engine.getLicense());
 	}
 
 	@Test
