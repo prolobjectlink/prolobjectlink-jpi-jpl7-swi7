@@ -99,3 +99,22 @@ program_size(File,Size) :-
 			L
 			),
 	length(L, Size).
+	
+	
+	
+/***********************************
+* 
+* list procedures
+*
+************************************/
+clause_list(File,L) :-
+	consult(File),
+	findall(
+			Head:-Body,
+			(
+				predicate_property(Head, file(File)),
+				clause(Head,Body)
+			),
+			L
+			).
+	
