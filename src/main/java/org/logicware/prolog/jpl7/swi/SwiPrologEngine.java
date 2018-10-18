@@ -170,7 +170,7 @@ public final class SwiPrologEngine extends JplEngine implements PrologEngine {
 	}
 
 	public PrologQuery query(String stringQuery) {
-		return new JplQuery(this, file, files, stringQuery);
+		return new JplQuery(this, file, stringQuery);
 	}
 
 	public PrologQuery query(PrologTerm... terms) {
