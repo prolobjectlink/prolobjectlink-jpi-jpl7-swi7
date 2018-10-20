@@ -38,7 +38,6 @@ import org.jpl7.Query;
 import org.jpl7.Term;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.logicware.platform.Licenses;
 import org.logicware.prolog.OperatorEntry;
@@ -311,7 +310,6 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	@Ignore
 	public final void testAssertaString() {
 		engine.asserta("parent( pam, bob)");
 		assertEquals(1, engine.getProgramSize());
@@ -333,7 +331,6 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	@Ignore
 	public final void testAssertaIPrologTerm() {
 		engine.asserta(provider.newStructure(parent, pam, bob));
 		assertEquals(1, engine.getProgramSize());
@@ -361,7 +358,6 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	@Ignore
 	public final void testAssertaIPrologTermIPrologTermArray() {
 		PrologVariable x = provider.newVariable("X");
 		PrologVariable y = provider.newVariable("Y");
