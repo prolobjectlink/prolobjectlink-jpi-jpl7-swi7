@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package org.logicware.prolog.jpl7.swi;
+package org.logicware.prolog.jpl7.swi7;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +30,7 @@ import org.logicware.prolog.PrologInteger;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologVariable;
+import org.logicware.prolog.jpl7.swi7.SwiPrologProvider;
 
 public abstract class PrologBaseTest {
 

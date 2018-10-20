@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package org.logicware.prolog.jpl7.swi;
+package org.logicware.prolog.jpl7.swi7;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -45,6 +45,7 @@ import org.logicware.prolog.PrologStructure;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologVariable;
 import org.logicware.prolog.jpl7.JplList;
+import org.logicware.prolog.jpl7.swi7.SwiPrologConverter;
 
 public class PrologConverterTest extends PrologBaseTest {
 

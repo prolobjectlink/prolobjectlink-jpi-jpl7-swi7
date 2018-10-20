@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package org.logicware.prolog.jpl7.swi;
+package org.logicware.prolog.jpl7.swi7;
 
 import org.jpl7.Term;
 import org.logicware.prolog.PrologConverter;
