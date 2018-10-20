@@ -42,7 +42,7 @@
 	<scm>
 		<developerConnection>scm:git:git@gitlab.delnet.cu:logicware/prolobjectlink-jpi-jpl7-swi.git</developerConnection>
 		<connection>scm:git:git@gitlab.delnet.cu:logicware/prolobjectlink-jpi-jpl7-swi.git</connection>
-		<url>http://gitlab.delnet.cu/logicware/prolobjectlink-jpi-jpl7-swi</url>
+		<url>http://gitlab.delnet.cu/logicware/prolobjectlink-jpi-jpl7-swi7</url>
 		<tag>${project.name}-${project.version}</tag>
 	</scm>
 
