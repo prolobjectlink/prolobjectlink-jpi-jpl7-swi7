@@ -91,6 +91,7 @@ public class PrologQueryTest extends PrologBaseTest {
 
 	@After
 	public final void tearDown() throws Exception {
+		engine.dispose();
 		query.dispose();
 	}
 

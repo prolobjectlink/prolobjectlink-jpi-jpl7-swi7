@@ -37,12 +37,10 @@ import org.logicware.platform.logging.LoggerUtils;
 import org.logicware.prolog.PrologClause;
 import org.logicware.prolog.PrologEngine;
 import org.logicware.prolog.PrologProvider;
-import org.logicware.prolog.PrologQuery;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologTermType;
 import org.logicware.prolog.jpl7.JplClause;
 import org.logicware.prolog.jpl7.JplEngine;
-import org.logicware.prolog.jpl7.JplQuery;
 
 public final class SwiPrologEngine extends JplEngine implements PrologEngine {
 
@@ -50,23 +48,25 @@ public final class SwiPrologEngine extends JplEngine implements PrologEngine {
 	private static final String SWI_PROLOG = "swi-prolog.pl";
 	private static final String SWI_TEMP_FILE = "prolobjectlink-jpi-jpl7-swi.pl";
 
-	private static final String SWI_TEMP = temp + "/" + SWI_TEMP_FILE;
 	private static final String SWI_PROCEDURE = META_INF + "/" + SWI_PROLOG;
 
 	private static final String ENSURE_LOADED_OPEN = "ensure_loaded('";
 	private static final String ENSURE_LOADED_CLOSE_AND = "'),";
 
+	private final String swiTemp;
+
 	SwiPrologEngine(PrologProvider provider) {
 		super(provider);
 		InputStream in = null;
 		OutputStream out = null;
+		swiTemp = temp + "/" + SWI_TEMP_FILE;
 		try {
 			Thread thread = Thread.currentThread();
 			ClassLoader cl = thread.getContextClassLoader();
 			if (!(new File(SWI_PROCEDURE).exists())) {
 				in = cl.getResource(SWI_PROCEDURE).openStream();
-				out = new FileOutputStream(SWI_TEMP);
-				LoggerUtils.info(getClass(), SWI_TEMP);
+				out = new FileOutputStream(swiTemp);
+				LoggerUtils.info(getClass(), swiTemp);
 				copy(in, out);
 			}
 		} catch (IOException e) {
@@ -93,13 +93,14 @@ public final class SwiPrologEngine extends JplEngine implements PrologEngine {
 		super(provider, file);
 		InputStream in = null;
 		OutputStream out = null;
+		swiTemp = temp + "/" + SWI_TEMP_FILE;
 		try {
 			Thread thread = Thread.currentThread();
 			ClassLoader cl = thread.getContextClassLoader();
 			if (!(new File(SWI_PROCEDURE).exists())) {
 				in = cl.getResource(SWI_PROCEDURE).openStream();
-				out = new FileOutputStream(SWI_TEMP);
-				LoggerUtils.info(getClass(), SWI_TEMP);
+				out = new FileOutputStream(swiTemp);
+				LoggerUtils.info(getClass(), swiTemp);
 				copy(in, out);
 			}
 		} catch (IOException e) {
@@ -122,89 +123,10 @@ public final class SwiPrologEngine extends JplEngine implements PrologEngine {
 		}
 	}
 
-	public void include(String path) {
-		// TODO Auto-generated method stub
-	}
-
-	public synchronized void abolish(String functor, int arity) {
-		query = new Query("" +
-
-				ENSURE_LOADED_OPEN + SWI_TEMP + ENSURE_LOADED_CLOSE_AND +
-
-				"remove_all('" + location + "'," + functor + "," + arity + ")"
-
-		);
-		query.hasSolution();
-	}
-
-	@Override
-	public synchronized void asserta(Term term) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public synchronized void assertz(Term t) {
-		Term h = t;
-		Term b = BODY;
-		if (t.hasFunctor(":-", 2)) {
-			h = t.arg(1);
-			b = t.arg(2);
-		}
-		query = new Query("" +
-
-				ENSURE_LOADED_OPEN + SWI_TEMP + ENSURE_LOADED_CLOSE_AND +
-
-				"add_clause('" + location + "'," + t + "," + h + "," + b + ")"
-
-		);
-		query.hasSolution();
-	}
-
-	@Override
-	public synchronized boolean clause(Term t) {
-		Term h = t;
-		Term b = BODY;
-		if (t.hasFunctor(":-", 2)) {
-			h = t.arg(1);
-			b = t.arg(2);
-		}
-		query = new Query("" +
-
-				"clause(" + h + "," + b + ")"
-
-		);
-		return query.hasSolution();
-	}
-
-	@Override
-	public synchronized void retract(Term t) {
-		query = new Query("" +
-
-				ENSURE_LOADED_OPEN + SWI_TEMP + ENSURE_LOADED_CLOSE_AND +
-
-				"remove_clause('" + location + "'," + t + ")"
-
-		);
-		query.hasSolution();
-	}
-
-	public PrologQuery query(String stringQuery) {
-		return new JplQuery(this, file, stringQuery);
-	}
-
-	public PrologQuery query(PrologTerm... terms) {
-		StringBuilder buffer = new StringBuilder();
-		int length = terms.length;
-		for (int i = 0; i < length; i++) {
-			buffer.append(i < length - 1 ? terms[i] + ", " : terms[i]);
-		}
-		return query("" + buffer + "");
-	}
-
 	public Iterator<PrologClause> iterator() {
 		query = new Query(
 
-				ENSURE_LOADED_OPEN + SWI_TEMP + ENSURE_LOADED_CLOSE_AND +
+				ENSURE_LOADED_OPEN + swiTemp + ENSURE_LOADED_CLOSE_AND +
 
 						"clause_list('" + location + "'," + KEY + ")"
 
@@ -230,13 +152,39 @@ public final class SwiPrologEngine extends JplEngine implements PrologEngine {
 	public synchronized int getProgramSize() {
 		query = new Query(
 
-				ENSURE_LOADED_OPEN + SWI_TEMP + ENSURE_LOADED_CLOSE_AND +
+				ENSURE_LOADED_OPEN + swiTemp + ENSURE_LOADED_CLOSE_AND +
 
 						"program_size('" + location + "'," + KEY + ")"
 
 		);
 		Term term = query.oneSolution().get(KEY);
 		return term.intValue();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((swiTemp == null) ? 0 : swiTemp.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SwiPrologEngine other = (SwiPrologEngine) obj;
+		if (swiTemp == null) {
+			if (other.swiTemp != null)
+				return false;
+		} else if (!swiTemp.equals(other.swiTemp)) {
+			return false;
+		}
+		return true;
 	}
 
 }
