@@ -21,6 +21,7 @@ package org.logicware.prolog.jpl7.swi7;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +34,6 @@ import org.jpl7.Term;
 import org.jpl7.Variable;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.logicware.prolog.PrologAtom;
 import org.logicware.prolog.PrologConverter;
@@ -45,7 +45,6 @@ import org.logicware.prolog.PrologStructure;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologVariable;
 import org.logicware.prolog.jpl7.JplList;
-import org.logicware.prolog.jpl7.swi7.SwiPrologConverter;
 
 public class PrologConverterTest extends PrologBaseTest {
 
@@ -545,9 +544,8 @@ public class PrologConverterTest extends PrologBaseTest {
 	}
 
 	@Test
-	@Ignore
 	public final void testCreateProvider() {
-		assertEquals(provider, converter.createProvider());
+		assertNotNull(converter.createProvider());
 	}
 
 }
