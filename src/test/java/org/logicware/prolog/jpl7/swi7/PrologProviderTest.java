@@ -127,9 +127,9 @@ public class PrologProviderTest extends PrologBaseTest {
 
 	@Test
 	public final void testNewPrologVariable() {
-		PrologVariable variable = provider.newVariable("X");
+		PrologVariable variable = provider.newVariable("X", 0);
 		assertEquals(VARIABLE_TYPE, variable.getType());
-		assertEquals(provider.newVariable("X"), variable);
+		assertEquals(provider.newVariable("X", 0), variable);
 		assertEquals("X", variable.getName());
 	}
 

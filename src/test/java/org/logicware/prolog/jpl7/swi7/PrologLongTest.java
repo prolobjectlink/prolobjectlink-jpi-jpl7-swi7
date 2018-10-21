@@ -1,8 +1,8 @@
 /*
  * #%L
- * prolobjectlink-jpi-jpl7-swi7
+ * prolobjectlink-jpi-jtrolog
  * %%
- * Copyright (C) 2012 - 2018 Logicware Project
+ * Copyright (C) 2012 - 2017 Logicware Project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.logicware.prolog.PrologTermType.LONG_TYPE;
 
+import org.jpl7.Integer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -85,13 +86,13 @@ public class PrologLongTest extends PrologBaseTest {
 
 	@Test
 	public void testPrologInteger() {
-		org.jpl7.Integer integer = new org.jpl7.Integer(0);
+		Integer integer = new Integer(0);
 		assertEquals(0, integer.longValue());
 	}
 
 	@Test
 	public void testPrologIntegerLong() {
-		assertEquals(100, new org.jpl7.Integer(100).longValue());
+		assertEquals(100, new Integer(100).longValue());
 	}
 
 	@Test
@@ -218,7 +219,7 @@ public class PrologLongTest extends PrologBaseTest {
 		assertFalse(lValue.unify(dValue));
 
 		// with variable
-		PrologVariable variable = provider.newVariable("X");
+		PrologVariable variable = provider.newVariable("X", 0);
 		// true. case atom and variable
 		assertTrue(lValue.unify(variable));
 
@@ -241,44 +242,43 @@ public class PrologLongTest extends PrologBaseTest {
 		// with atom
 		PrologLong lValue = provider.newLong(28);
 		PrologAtom atom = provider.newAtom("John Doe");
-		assertEquals(lValue.compareTo(atom), -1);
+		assertEquals(-1, lValue.compareTo(atom));
 
 		// with integer
 		PrologInteger iValue = provider.newInteger(36);
 		// false because they are different
-		assertEquals(lValue.compareTo(iValue), -1);
+		assertEquals(-1, lValue.compareTo(iValue));
 
 		// with long
 		PrologLong lValue1 = provider.newLong(36);
 		// true because are equals
-		assertEquals(lValue.compareTo(lValue), 0);
+		assertEquals(0, lValue.compareTo(lValue));
 		// false because they are different
-		assertEquals(lValue.compareTo(lValue1), -1);
+		assertEquals(-1, lValue.compareTo(lValue1));
 
 		// with float
 		PrologFloat fValue = provider.newFloat(36.47);
-		assertEquals(lValue.compareTo(fValue), -1);
+		assertEquals(-1, lValue.compareTo(fValue));
 
 		// with double
 		PrologDouble dValue = provider.newDouble(36.47);
-		assertEquals(lValue.compareTo(dValue), -1);
+		assertEquals(-1, lValue.compareTo(dValue));
 
 		// with variable
-		PrologVariable variable = provider.newVariable("X");
-		// true. case atom and variable
-		assertEquals(lValue.compareTo(variable), 1);
+		PrologVariable variable = provider.newVariable("X", 0);
+		assertEquals(1, lValue.compareTo(variable));
 
 		// with predicate
 		PrologStructure structure = provider.parsePrologStructure("some_predicate(a,b,c)");
-		assertEquals(lValue.compareTo(structure), -1);
+		assertEquals(-1, lValue.compareTo(structure));
 
 		// with list
 		PrologList list = provider.parsePrologList("[a,b,c]");
-		assertEquals(lValue.compareTo(list), -1);
+		assertEquals(-1, lValue.compareTo(list));
 
 		// with expression
 		PrologTerm expression = provider.parsePrologTerm("58+93*10");
-		assertEquals(lValue.compareTo(expression), -1);
+		assertEquals(-1, lValue.compareTo(expression));
 	}
 
 }

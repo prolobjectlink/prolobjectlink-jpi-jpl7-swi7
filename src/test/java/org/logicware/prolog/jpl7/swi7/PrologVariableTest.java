@@ -1,8 +1,8 @@
 /*
  * #%L
- * prolobjectlink-jpi-jpl7-swi7
+ * prolobjectlink-jpi-jtrolog
  * %%
- * Copyright (C) 2012 - 2018 Logicware Project
+ * Copyright (C) 2012 - 2017 Logicware Project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,6 @@ import org.logicware.prolog.PrologLong;
 import org.logicware.prolog.PrologStructure;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologVariable;
-import org.logicware.prolog.jpl7.JplInteger;
 
 public class PrologVariableTest extends PrologBaseTest {
 
@@ -46,7 +45,7 @@ public class PrologVariableTest extends PrologBaseTest {
 
 	@Before
 	public void setUp() throws Exception {
-		variable = provider.newVariable("X");
+		variable = provider.newVariable("X", 0);
 	}
 
 	@After
@@ -55,13 +54,13 @@ public class PrologVariableTest extends PrologBaseTest {
 
 	@Test
 	public final void testGetArguments() {
-		assertArrayEquals(new JplInteger[0], variable.getArguments());
+		assertArrayEquals(new PrologInteger[0], variable.getArguments());
 	}
 
 	@Test
 	public final void testIsAnonim() {
 		assertFalse(variable.isAnonymous());
-		assertTrue(provider.newVariable().isAnonymous());
+		assertTrue(provider.newVariable(0).isAnonymous());
 	}
 
 	@Test
@@ -148,116 +147,115 @@ public class PrologVariableTest extends PrologBaseTest {
 	public final void testUnify() {
 
 		// with atom
-		PrologVariable variable = provider.newVariable("X");
+		PrologVariable variable = provider.newVariable("X", 0);
 		PrologAtom atom = provider.newAtom("John Smith");
 		assertTrue(variable.unify(atom));
 
 		// with integer
-		variable = provider.newVariable("X");
+		variable = provider.newVariable("X", 0);
 		PrologInteger iValue = provider.newInteger(28);
 		assertTrue(variable.unify(iValue));
 
 		// with long
-		variable = provider.newVariable("X");
+		variable = provider.newVariable("X", 0);
 		PrologLong lValue = provider.newLong(28);
 		assertTrue(variable.unify(lValue));
 
 		// with float
-		variable = provider.newVariable("X");
+		variable = provider.newVariable("X", 0);
 		PrologFloat fValue = provider.newFloat(36.47);
 		assertTrue(variable.unify(fValue));
 
 		// with double
-		variable = provider.newVariable("X");
+		variable = provider.newVariable("X", 0);
 		PrologDouble dValue = provider.newDouble(36.47);
 		assertTrue(variable.unify(dValue));
 
 		// with variable
-		variable = provider.newVariable("X");
-		PrologVariable y = provider.newVariable("Y");
+		variable = provider.newVariable("X", 0);
+		PrologVariable y = provider.newVariable("Y", 0);
 		assertTrue(variable.unify(variable)); // are
 		// equals
 		assertTrue(variable.unify(y)); // alphabetic
 		// substitution
 
 		// with predicate with occurs check
-		variable = provider.newVariable("X");
+		variable = provider.newVariable("X", 0);
 		PrologStructure structure = provider.parsePrologStructure("some_predicate(a,b,c)");
 		assertTrue(variable.unify(structure));
 		structure = provider.parsePrologStructure("structure([X])");
 		assertFalse(variable.unify(structure));
 
-		variable = provider.newVariable("X");
+		variable = provider.newVariable("X", 0);
 		structure = provider.parsePrologStructure("structure(A,b,C)");
 		assertTrue(variable.unify(structure));
 
 		// with list
-		variable = provider.newVariable("X");
-		PrologVariable z = provider.newVariable("Z");
+		variable = provider.newVariable("X", 0);
+		PrologVariable z = provider.newVariable("Z", 0);
 		PrologList flattenList = provider.parsePrologList("[X]");
 		PrologList headTailList = provider.parsePrologList("[Y|[]]");
 		PrologTerm empty = provider.prologEmpty();
 		assertFalse(variable.unify(flattenList));
 		assertFalse(y.unify(headTailList));
 		assertTrue(z.unify(empty));
-
 	}
 
 	@Test
 	public final void testCompareTo() {
 
 		// with atom
-		PrologVariable variable = provider.newVariable("X");
+		PrologVariable variable = provider.newVariable("X", 0);
 		PrologAtom atom = provider.newAtom("John Smith");
-		assertEquals(variable.compareTo(atom), -1);
+		assertEquals(-1, variable.compareTo(atom));
 
 		// with integer
-		variable = provider.newVariable("X");
+		variable = provider.newVariable("X", 0);
 		PrologInteger iValue = provider.newInteger(28);
-		assertEquals(variable.compareTo(iValue), -1);
+		assertEquals(-1, variable.compareTo(iValue));
 
 		// with long
-		variable = provider.newVariable("X");
+		variable = provider.newVariable("X", 0);
 		PrologLong lValue = provider.newLong(28);
-		assertEquals(variable.compareTo(lValue), -1);
+		assertEquals(-1, variable.compareTo(lValue));
 
 		// with float
-		variable = provider.newVariable("X");
+		variable = provider.newVariable("X", 0);
 		PrologFloat fValue = provider.newFloat(36.47);
-		assertEquals(variable.compareTo(fValue), -1);
+		assertEquals(-1, variable.compareTo(fValue));
 
 		// with double
-		variable = provider.newVariable("X");
+		variable = provider.newVariable("X", 0);
 		PrologDouble dValue = provider.newDouble(36.47);
-		assertEquals(variable.compareTo(dValue), -1);
+		assertEquals(-1, variable.compareTo(dValue));
 
 		// with variable
-		variable = provider.newVariable("X");
-		PrologVariable y = provider.newVariable("Y");
-		assertEquals(variable.compareTo(variable), 0); // are
+		variable = provider.newVariable("X", 0);
+		PrologVariable y = provider.newVariable("Y", 0);
+		assertEquals(0, variable.compareTo(variable)); // are
 		// equals
-		assertEquals(variable.compareTo(y), -1); // alphabetic
+		assertEquals(-1, variable.compareTo(y)); // alphabetic
 		// substitution
 
-		variable = provider.newVariable("X");
+		variable = provider.newVariable("X", 0);
 		PrologStructure structure = provider.parsePrologStructure("some_predicate(a,b,c)");
-		assertEquals(variable.compareTo(structure), -1);
+		assertEquals(-1, variable.compareTo(structure));
 		structure = provider.parsePrologStructure("structure([X])");
-		assertEquals(variable.compareTo(structure), -1);
+		assertEquals(-1, variable.compareTo(structure));
 
-		variable = provider.newVariable("X");
+		variable = provider.newVariable("X", 0);
 		structure = provider.parsePrologStructure("structure(A,b,C)");
-		assertEquals(variable.compareTo(structure), -1);
+		assertEquals(-1, variable.compareTo(structure));
 
 		// with list
-		variable = provider.newVariable("X");
-		PrologVariable z = provider.newVariable("Z");
+		variable = provider.newVariable("X", 0);
+		PrologVariable z = provider.newVariable("Z", 0);
 		PrologList flattenList = provider.parsePrologList("[X]");
 		PrologList headTailList = provider.parsePrologList("[Y|[]]");
 		PrologTerm empty = provider.prologEmpty();
-		assertEquals(variable.compareTo(flattenList), -1);
-		assertEquals(y.compareTo(headTailList), -1);
-		assertEquals(z.compareTo(empty), -1);
+		assertEquals(-1, variable.compareTo(flattenList));
+		assertEquals(-1, y.compareTo(headTailList));
+		assertEquals(-1, z.compareTo(empty));
 	}
 
 }

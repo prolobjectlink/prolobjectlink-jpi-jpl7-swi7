@@ -1,8 +1,8 @@
 /*
  * #%L
- * prolobjectlink-jpi-jpl7-swi7
+ * prolobjectlink-jpi-jtrolog
  * %%
- * Copyright (C) 2012 - 2018 Logicware Project
+ * Copyright (C) 2012 - 2017 Logicware Project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -175,7 +175,7 @@ public class PrologAtomTest extends PrologBaseTest {
 		assertFalse(atom.unify(dValue));
 
 		// with variable
-		PrologVariable variable = provider.newVariable("X");
+		PrologVariable variable = provider.newVariable("X", 0);
 		// true. case atom and variable
 		assertTrue(atom.unify(variable));
 
@@ -199,42 +199,42 @@ public class PrologAtomTest extends PrologBaseTest {
 		PrologAtom atom = provider.newAtom("smith");
 		PrologAtom atom1 = provider.newAtom("doe");
 		// true because the atoms are equals
-		assertEquals(atom.compareTo(atom), 0);
+		assertEquals(0, atom.compareTo(atom));
 		// false because the atoms are different
-		assertEquals(atom.compareTo(atom1), 1);
+		assertEquals(1, atom.compareTo(atom1));
 
 		// with integer
 		PrologInteger iValue = provider.newInteger(28);
-		assertEquals(atom.compareTo(iValue), 1);
+		assertEquals(1, atom.compareTo(iValue));
 
 		// with long
 		PrologLong lValue = provider.newLong(28);
-		assertEquals(atom.compareTo(lValue), 1);
+		assertEquals(1, atom.compareTo(lValue));
 
 		// with float
 		PrologFloat fValue = provider.newFloat(36.47);
-		assertEquals(atom.compareTo(fValue), 1);
+		assertEquals(1, atom.compareTo(fValue));
 
 		// with double
 		PrologDouble dValue = provider.newDouble(36.47);
-		assertEquals(atom.compareTo(dValue), 1);
+		assertEquals(1, atom.compareTo(dValue));
 
 		// with variable
-		PrologVariable variable = provider.newVariable("X");
+		PrologVariable variable = provider.newVariable("X",0);
 		// true. case atom and variable
-		assertEquals(atom.compareTo(variable), 1);
+		assertEquals(1, atom.compareTo(variable));
 
 		// with predicate
 		PrologStructure structure = provider.parsePrologStructure("some_predicate(a,b,c)");
-		assertEquals(atom.compareTo(structure), -1);
+		assertEquals(-1, atom.compareTo(structure));
 
 		// with list
 		PrologList flattenedList = provider.parsePrologList("[a,b,c]");
-		assertEquals(atom.compareTo(flattenedList), -1);
+		assertEquals(-1, atom.compareTo(flattenedList));
 
 		// with expression
 		PrologTerm expression = provider.parsePrologTerm("58+93*10");
-		assertEquals(atom.compareTo(expression), -1);
+		assertEquals(-1, atom.compareTo(expression));
 
 	}
 
