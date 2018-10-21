@@ -43,6 +43,9 @@ public class PrologClauseTest extends PrologBaseTest {
 	@Ignore
 	public void testHashCode() {
 
+		// this test case depend of correct variable name
+		// swi-prolog lost variable name in memory
+
 		engine.assertz(provider.newStructure(parent, tom, bob));
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
@@ -249,6 +252,10 @@ public class PrologClauseTest extends PrologBaseTest {
 	@Test
 	@Ignore
 	public void testToString() {
+
+		// this test case depend of correct variable name
+		// swi-prolog lost variable name in memory
+
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
 		assertEquals("grandparent(X,Z):-\n\tparent(X,Y),\n\tparent(Y,Z).",
