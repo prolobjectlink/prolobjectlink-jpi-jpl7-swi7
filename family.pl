@@ -1,35 +1,35 @@
-male(tom).
-male(bob).
-male(jim).
-grandparent(_6219, _6220):-
-	parent(_6219, _6221),
-	parent(_6221, _6220).
+offspring(_5676, _5677):-
+	parent(_5676, _5677).
+female(pam).
+female(liz).
+female(ann).
+female(pat).
+different(_5678, _5678):-
+	!,
+	fail.
+different(_5679, _5680).
+sister(_5681, _5682):-
+	parent(_5683, _5681),
+	parent(_5683, _5682),
+	female(_5681),
+	different(_5681, _5682).
+mother(_5684, _5685):-
+	parent(_5684, _5685),
+	female(_5684).
+grandparent(_5686, _5687):-
+	parent(_5686, _5688),
+	parent(_5688, _5687).
+predecessor(_5689, _5690):-
+	parent(_5689, _5690).
+predecessor(_5691, _5692):-
+	parent(_5691, _5693),
+	predecessor(_5693, _5692).
 parent(pam, bob).
 parent(tom, bob).
 parent(tom, liz).
 parent(bob, ann).
 parent(bob, pat).
 parent(pat, jim).
-female(pam).
-female(liz).
-female(ann).
-female(pat).
-sister(_6222, _6223):-
-	parent(_6224, _6222),
-	parent(_6224, _6223),
-	female(_6222),
-	different(_6222, _6223).
-different(_6225, _6225):-
-	!,
-	fail.
-different(_6226, _6227).
-offspring(_6228, _6229):-
-	parent(_6228, _6229).
-predecessor(_6230, _6231):-
-	parent(_6230, _6231).
-predecessor(_6232, _6233):-
-	parent(_6232, _6234),
-	predecessor(_6234, _6233).
-mother(_6235, _6236):-
-	parent(_6235, _6236),
-	female(_6235).
+male(tom).
+male(bob).
+male(jim).
