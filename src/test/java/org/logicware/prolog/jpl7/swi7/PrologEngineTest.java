@@ -1284,7 +1284,8 @@ public class PrologEngineTest extends PrologBaseTest {
 	@Test
 	public final void testDispose() {
 		engine.dispose();
-		// assertFalse(engine.engine.getTheory().iterator(engine.engine).hasNext());
+		SwiPrologEngine e = engine.unwrap(SwiPrologEngine.class);
+		assertFalse(new File(e.getCache()).exists());
 	}
 
 	@Test
