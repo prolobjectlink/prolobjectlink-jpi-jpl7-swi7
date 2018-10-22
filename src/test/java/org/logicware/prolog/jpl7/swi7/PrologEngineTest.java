@@ -39,7 +39,7 @@ import org.jpl7.Term;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.logicware.platform.Licenses;
+import org.logicware.Licenses;
 import org.logicware.prolog.OperatorEntry;
 import org.logicware.prolog.PredicateIndicator;
 import org.logicware.prolog.PrologAtom;
