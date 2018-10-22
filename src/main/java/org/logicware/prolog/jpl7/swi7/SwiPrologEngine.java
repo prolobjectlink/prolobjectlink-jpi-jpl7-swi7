@@ -19,11 +19,6 @@
  */
 package org.logicware.prolog.jpl7.swi7;
 
-import static org.logicware.platform.logging.LoggerConstants.FILE_NOT_FOUND;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -31,7 +26,6 @@ import java.util.List;
 import org.jpl7.Query;
 import org.jpl7.Term;
 import org.jpl7.Util;
-import org.logicware.platform.logging.LoggerUtils;
 import org.logicware.prolog.PrologClause;
 import org.logicware.prolog.PrologEngine;
 import org.logicware.prolog.PrologProvider;
@@ -42,50 +36,32 @@ import org.logicware.prolog.jpl7.JplEngine;
 
 public final class SwiPrologEngine extends JplEngine implements PrologEngine {
 
-	private static final String SWI_TEMP_FILE = "prolobjectlink-jpi-jpl7-swi7.pl";
-
 	SwiPrologEngine(PrologProvider provider) {
 		super(provider);
-		populateProcedureFile();
 	}
 
 	SwiPrologEngine(PrologProvider provider, String file) {
 		super(provider, file);
-		populateProcedureFile();
-	}
-
-	/**
-	 * Copy procedures to OS temporal directory
-	 */
-	private void populateProcedureFile() {
-		PrintWriter writer = null;
-		try {
-			writer = new PrintWriter(new FileOutputStream(temp + "/" + SWI_TEMP_FILE, false));
-			writer.append("clause_list(File,L) :-");
-			writer.append("\n\tconsult(File),");
-			writer.append("\n\tfindall(");
-			writer.append("\n\t\tHead:-Body,");
-			writer.append("\n\t\t(");
-			writer.append("\n\t\t\tpredicate_property(Head, file(File)),");
-			writer.append("\n\t\t\tclause(Head,Body)");
-			writer.append("\n\t\t),");
-			writer.append("\n\t\tL");
-			writer.append("\n\t\t).");
-		} catch (FileNotFoundException e) {
-			LoggerUtils.error(getClass(), FILE_NOT_FOUND + temp + "/" + SWI_TEMP_FILE, e);
-		} finally {
-			if (writer != null) {
-				writer.close();
-			}
-		}
 	}
 
 	public Iterator<PrologClause> iterator() {
 		query = new Query(
 
-				"ensure_loaded('" + temp + "/" + SWI_TEMP_FILE + "')," +
+				/* tab */"File = '" + location + "'," +
 
-						"clause_list('" + location + "'," + KEY + ")"
+						"consult(File)," +
+
+						"findall(" +
+
+						/* tab */"Head:-Body," +
+
+						/* tab */"(" +
+
+						/* tab *//* tab */"predicate_property(Head, file(File)),clause(Head,Body)" +
+
+						/* tab */")," +
+
+						"X)."
 
 		);
 		Term term = query.oneSolution().get(KEY);
