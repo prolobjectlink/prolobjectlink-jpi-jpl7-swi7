@@ -149,8 +149,8 @@ public class PrologClauseTest extends PrologBaseTest {
 		Iterator<PrologClause> iengine = engine.getProgramClauses().iterator();
 
 		// order dependent
-		PrologClause rule = iengine.next();
 		PrologClause fact = iengine.next();
+		PrologClause rule = iengine.next();
 
 		assertTrue(fact.isFact());
 		assertFalse(rule.isFact());
@@ -165,9 +165,8 @@ public class PrologClauseTest extends PrologBaseTest {
 
 		Iterator<PrologClause> iengine = engine.getProgramClauses().iterator();
 
-		// order dependent
-		PrologClause rule = iengine.next();
 		PrologClause fact = iengine.next();
+		PrologClause rule = iengine.next();
 
 		assertFalse(fact.isRule());
 		assertTrue(rule.isRule());

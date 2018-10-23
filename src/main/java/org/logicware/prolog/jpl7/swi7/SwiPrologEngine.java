@@ -44,12 +44,11 @@ public final class SwiPrologEngine extends JplEngine implements PrologEngine {
 		super(provider, file);
 	}
 
-	public Iterator<PrologClause> iterator() {
-		query = new Query(
+	@Override
+	protected final synchronized Iterator<PrologClause> iterator(String path) {
+		Query query = new Query(
 
-				/* tab */"File = '" + location + "'," +
-
-						"consult(File)," +
+				"consult('" + path + "')," +
 
 						"findall(" +
 
@@ -57,11 +56,13 @@ public final class SwiPrologEngine extends JplEngine implements PrologEngine {
 
 						/* tab */"(" +
 
-						/* tab *//* tab */"predicate_property(Head, file(File)),clause(Head,Body)" +
+						/* tab *//* tab */"predicate_property(Head, file('" + path + "')),clause(Head,Body)" +
 
 						/* tab */")," +
 
-						"X)."
+						/* tab */"X" +
+
+						")."
 
 		);
 		Term term = query.oneSolution().get(KEY);
@@ -76,9 +77,9 @@ public final class SwiPrologEngine extends JplEngine implements PrologEngine {
 				} else {
 					cls.add(new JplClause(provider, head, false, false, false));
 				}
-
 			}
 		}
+		query.close();
 		return new PrologProgramIterator(cls);
 	}
 
