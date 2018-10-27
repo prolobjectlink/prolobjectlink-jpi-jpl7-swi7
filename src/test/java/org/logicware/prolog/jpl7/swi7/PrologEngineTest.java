@@ -39,14 +39,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.logicware.Licenses;
-import org.logicware.prolog.OperatorEntry;
 import org.logicware.prolog.PredicateIndicator;
 import org.logicware.prolog.PrologAtom;
 import org.logicware.prolog.PrologEngine;
+import org.logicware.prolog.PrologOperator;
 import org.logicware.prolog.PrologQuery;
 import org.logicware.prolog.PrologStructure;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologVariable;
+import org.logicware.prolog.jpl7.JplOperator;
 
 public class PrologEngineTest extends PrologBaseTest {
 
@@ -1029,7 +1030,7 @@ public class PrologEngineTest extends PrologBaseTest {
 
 	@Test
 	public final void testCurrentOperators() {
-		Set<OperatorEntry> operators = new HashSet<OperatorEntry>();
+		Set<PrologOperator> operators = new HashSet<PrologOperator>();
 		String key = "LIST";
 		String opQuery = "findall(P/S/O,current_op(P,S,O)," + key + ")";
 		Query query = new Query(opQuery);
@@ -1044,7 +1045,7 @@ public class PrologEngineTest extends PrologBaseTest {
 				int p = prio.intValue();
 				String s = pos.name();
 				String n = op.name();
-				OperatorEntry o = new OperatorEntry(p, s, n);
+				PrologOperator o = new JplOperator(p, s, n);
 				operators.add(o);
 			}
 		}
