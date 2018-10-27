@@ -33,7 +33,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.jpl7.JPL;
 import org.jpl7.Query;
 import org.jpl7.Term;
 import org.junit.After;
@@ -1274,31 +1273,33 @@ public class PrologEngineTest extends PrologBaseTest {
 
 	@Test
 	public final void testGetVersion() {
-		assertEquals(JPL.version_string(), engine.getVersion());
+		Term swi = Query.oneSolution("current_prolog_flag(version_data,Swi)").get("Swi");
+		String version = "" + swi.arg(1) + "." + swi.arg(2) + "." + swi.arg(3) + "";
+		assertEquals(version, engine.getVersion());
 	}
 
 	@Test
 	public final void testGetName() {
-		assertEquals("JPL7", engine.getName());
+		assertEquals("SWI-Prolog", engine.getName());
 	}
 
 	@Test
 	public final void testDispose() {
 		engine.dispose();
-		
+
 		// the dispose effect is
 		// temporal file elimination
-		
+
 		// this elimination occurs
-		
+
 		// don't check here because
-		// the JVM don't remove 
+		// the JVM don't remove
 		// the temporal file after
 		// termination
-		
+
 		// dispose method use
 		// temp.deleteOnExit()
-		
+
 	}
 
 	@Test

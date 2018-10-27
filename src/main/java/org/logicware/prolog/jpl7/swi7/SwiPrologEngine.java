@@ -26,6 +26,7 @@ import java.util.List;
 import org.jpl7.Query;
 import org.jpl7.Term;
 import org.jpl7.Util;
+import org.logicware.Licenses;
 import org.logicware.prolog.PrologClause;
 import org.logicware.prolog.PrologEngine;
 import org.logicware.prolog.PrologProvider;
@@ -42,6 +43,19 @@ public final class SwiPrologEngine extends JplEngine implements PrologEngine {
 
 	SwiPrologEngine(PrologProvider provider, String file) {
 		super(provider, file);
+	}
+
+	public final String getLicense() {
+		return Licenses.LGPL_V3;
+	}
+
+	public final String getVersion() {
+		Term swi = Query.oneSolution("current_prolog_flag(version_data,Swi)").get("Swi");
+		return "" + swi.arg(1) + "." + swi.arg(2) + "." + swi.arg(3) + "";
+	}
+
+	public final String getName() {
+		return "SWI-Prolog";
 	}
 
 	@Override
