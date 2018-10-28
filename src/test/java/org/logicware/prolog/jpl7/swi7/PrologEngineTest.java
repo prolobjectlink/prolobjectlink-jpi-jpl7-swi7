@@ -1006,7 +1006,7 @@ public class PrologEngineTest extends PrologBaseTest {
 
 	@Test
 	public final void testCurrentPredicates() {
-		SwiPrologEngine e = engine.unwrap(SwiPrologEngine.class);
+		SwiProlog7Engine e = engine.unwrap(SwiProlog7Engine.class);
 		Set<PredicateIndicator> predicates = new HashSet<PredicateIndicator>();
 		String consult5 = "consult('" + e.getCache() + "'),findall(X/Y,current_predicate(X/Y),L)";
 		Query query5 = new Query(consult5);

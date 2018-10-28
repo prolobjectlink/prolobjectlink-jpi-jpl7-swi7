@@ -35,13 +35,13 @@ import org.logicware.prolog.PrologTermType;
 import org.logicware.prolog.jpl7.JplClause;
 import org.logicware.prolog.jpl7.JplEngine;
 
-public final class SwiPrologEngine extends JplEngine implements PrologEngine {
+public final class SwiProlog7Engine extends JplEngine implements PrologEngine {
 
-	SwiPrologEngine(PrologProvider provider) {
+	SwiProlog7Engine(PrologProvider provider) {
 		super(provider);
 	}
 
-	SwiPrologEngine(PrologProvider provider, String file) {
+	SwiProlog7Engine(PrologProvider provider, String file) {
 		super(provider, file);
 	}
 

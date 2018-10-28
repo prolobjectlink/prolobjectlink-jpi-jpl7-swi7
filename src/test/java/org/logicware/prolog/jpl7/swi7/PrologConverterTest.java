@@ -50,7 +50,7 @@ public class PrologConverterTest extends PrologBaseTest {
 
 	private Term[][] termTable = new Term[7][5];
 	private Map<String, Term> termMap = new HashMap<String, Term>();
-	private PrologConverter<Term> converter = PrologConverterFactory.createPrologConverter(SwiPrologConverter.class);
+	private PrologConverter<Term> converter = PrologConverterFactory.createPrologConverter(SwiProlog7Converter.class);
 
 	@Before
 	public void setUp() throws Exception {

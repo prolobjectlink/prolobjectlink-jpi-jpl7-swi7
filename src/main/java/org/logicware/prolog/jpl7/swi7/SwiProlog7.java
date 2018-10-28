@@ -21,13 +21,27 @@ package org.logicware.prolog.jpl7.swi7;
 
 import org.jpl7.Term;
 import org.logicware.prolog.PrologConverter;
+import org.logicware.prolog.PrologEngine;
 import org.logicware.prolog.PrologProvider;
-import org.logicware.prolog.jpl7.JplConverter;
+import org.logicware.prolog.jpl7.JplProvider;
 
-public class SwiPrologConverter extends JplConverter implements PrologConverter<Term> {
+public class SwiProlog7 extends JplProvider implements PrologProvider {
 
-	public PrologProvider createProvider() {
-		return new SwiPrologProvider(this);
+	public SwiProlog7() {
+		super(new SwiProlog7Converter());
+	}
+
+	public SwiProlog7(PrologConverter<Term> converter) {
+		super(converter);
+	}
+
+	public PrologEngine newEngine() {
+		return new SwiProlog7Engine(this);
+	}
+
+	@Override
+	public String toString() {
+		return "SwiPrologProvider [converter=" + converter + "]";
 	}
 
 }
