@@ -1,10 +1,8 @@
+big(bear).
+big(elephant).
+dark(Z):-black(Z).
+dark(Z):-brown(Z).
+black(cat).
 gray(elephant).
 brown(bear).
 small(cat).
-big(bear).
-big(elephant).
-dark(_7229):-
-	black(_7229).
-dark(_7230):-
-	brown(_7230).
-black(cat).
