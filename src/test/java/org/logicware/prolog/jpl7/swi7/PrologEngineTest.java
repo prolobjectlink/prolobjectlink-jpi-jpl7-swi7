@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.jpl7.JPL;
 import org.jpl7.Query;
 import org.jpl7.Term;
 import org.junit.After;
@@ -1275,7 +1276,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	@Test
 	public final void testGetVersion() {
 		Term swi = Query.oneSolution("current_prolog_flag(version_data,Swi)").get("Swi");
-		String version = "" + swi.arg(1) + "." + swi.arg(2) + "." + swi.arg(3) + "";
+		String version = "" + swi.arg(1) + "." + swi.arg(2) + "." + swi.arg(3) + " (JPL v" + JPL.version_string() + ")";
 		assertEquals(version, engine.getVersion());
 	}
 

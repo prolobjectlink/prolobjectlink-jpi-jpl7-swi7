@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.jpl7.JPL;
 import org.jpl7.Query;
 import org.jpl7.Term;
 import org.jpl7.Util;
@@ -51,7 +52,7 @@ public final class SwiProlog7Engine extends JplEngine implements PrologEngine {
 
 	public final String getVersion() {
 		Term swi = Query.oneSolution("current_prolog_flag(version_data,Swi)").get("Swi");
-		return "" + swi.arg(1) + "." + swi.arg(2) + "." + swi.arg(3) + "";
+		return "" + swi.arg(1) + "." + swi.arg(2) + "." + swi.arg(3) + " (JPL v" + JPL.version_string() + ")";
 	}
 
 	public final String getName() {
