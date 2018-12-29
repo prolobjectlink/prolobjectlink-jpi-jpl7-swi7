@@ -88,9 +88,9 @@ public final class SwiProlog7Engine extends JplEngine implements PrologEngine {
 				PrologTerm head = toTerm(array[i].arg(1), PrologTerm.class);
 				PrologTerm body = toTerm(array[i].arg(2), PrologTerm.class);
 				if (body.getType() != PrologTermType.TRUE_TYPE) {
-					cls.add(new JplClause(provider, head, body, false, false, false));
+					cls.add(new SwiProlog7Clause(provider, head, body, false, false, false));
 				} else {
-					cls.add(new JplClause(provider, head, false, false, false));
+					cls.add(new SwiProlog7Clause(provider, head, false, false, false));
 				}
 			}
 		}
