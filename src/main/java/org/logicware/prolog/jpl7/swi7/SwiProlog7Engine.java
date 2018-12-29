@@ -2,7 +2,7 @@
  * #%L
  * prolobjectlink-jpi-jpl7-swi7
  * %%
- * Copyright (C) 2012 - 2018 Logicware Project
+ * Copyright (C) 2012 - 2018 WorkLogic Project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,6 @@ import org.logicware.prolog.PrologEngine;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologTermType;
-import org.logicware.prolog.jpl7.JplClause;
 import org.logicware.prolog.jpl7.JplEngine;
 
 public final class SwiProlog7Engine extends JplEngine implements PrologEngine {
