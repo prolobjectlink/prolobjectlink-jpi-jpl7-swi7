@@ -54,8 +54,8 @@ public class PrologClauseTest extends PrologBaseTest {
 		e.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
 
-		Iterator<PrologClause> iengine = engine.getProgramClauses().iterator();
-		Iterator<PrologClause> ie = e.getProgramClauses().iterator();
+		Iterator<PrologClause> iengine = engine.iterator();
+		Iterator<PrologClause> ie = e.iterator();
 
 		assertEquals(iengine.next().hashCode(), ie.next().hashCode());
 		assertEquals(iengine.next().hashCode(), ie.next().hashCode());
@@ -69,10 +69,9 @@ public class PrologClauseTest extends PrologBaseTest {
 				provider.newStructure(parent, y, z));
 
 		assertEquals(
-				provider.newStructure(":-", provider.newStructure(grandparent, x, z),
-						provider.newStructure(",", provider.newStructure(parent, x, y),
-								provider.newStructure(parent, y, z))),
-				engine.getProgramClauses().iterator().next().getTerm());
+				provider.newStructure(":-", provider.newStructure(grandparent, x, z), provider.newStructure(",",
+						provider.newStructure(parent, x, y), provider.newStructure(parent, y, z))),
+				engine.iterator().next().getTerm());
 
 	}
 
@@ -80,7 +79,7 @@ public class PrologClauseTest extends PrologBaseTest {
 	public void testGetHead() {
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
-		assertEquals(provider.newStructure(grandparent, x, z), engine.getProgramClauses().iterator().next().getHead());
+		assertEquals(provider.newStructure(grandparent, x, z), engine.iterator().next().getHead());
 	}
 
 	@Test
@@ -89,7 +88,7 @@ public class PrologClauseTest extends PrologBaseTest {
 				provider.newStructure(parent, y, z));
 		assertEquals(
 				provider.newStructure(",", provider.newStructure(parent, x, y), provider.newStructure(parent, y, z)),
-				engine.getProgramClauses().iterator().next().getBody());
+				engine.iterator().next().getBody());
 	}
 
 	@Test
@@ -97,14 +96,14 @@ public class PrologClauseTest extends PrologBaseTest {
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
 		assertArrayEquals(new PrologTerm[] { provider.newStructure(parent, x, y), provider.newStructure(parent, y, z) },
-				engine.getProgramClauses().iterator().next().getBodyArray());
+				engine.iterator().next().getBodyArray());
 	}
 
 	@Test
 	public void testGetBodyIterator() {
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
-		Iterator<PrologClause> iterator = engine.getProgramClauses().iterator();
+		Iterator<PrologClause> iterator = engine.iterator();
 
 		assertTrue(iterator.hasNext());
 		assertNotNull(iterator.next());
@@ -115,28 +114,28 @@ public class PrologClauseTest extends PrologBaseTest {
 	public void testGetFunctor() {
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
-		assertEquals("grandparent", engine.getProgramClauses().iterator().next().getFunctor());
+		assertEquals("grandparent", engine.iterator().next().getFunctor());
 	}
 
 	@Test
 	public void testGetArity() {
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
-		assertEquals(2, engine.getProgramClauses().iterator().next().getArity());
+		assertEquals(2, engine.iterator().next().getArity());
 	}
 
 	@Test
 	public void testGetIndicator() {
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
-		assertEquals("grandparent/2", engine.getProgramClauses().iterator().next().getIndicator());
+		assertEquals("grandparent/2", engine.iterator().next().getIndicator());
 	}
 
 	@Test
 	public void testIsDirective() {
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
-		assertFalse(engine.getProgramClauses().iterator().next().isDirective());
+		assertFalse(engine.iterator().next().isDirective());
 	}
 
 	@Test
@@ -146,11 +145,11 @@ public class PrologClauseTest extends PrologBaseTest {
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
 
-		Iterator<PrologClause> iengine = engine.getProgramClauses().iterator();
+		Iterator<PrologClause> iengine = engine.iterator();
 
-		// order dependent
-		PrologClause rule = iengine.next();
+		// in global test invert the order
 		PrologClause fact = iengine.next();
+		PrologClause rule = iengine.next();
 
 		assertTrue(fact.isFact());
 		assertFalse(rule.isFact());
@@ -163,10 +162,11 @@ public class PrologClauseTest extends PrologBaseTest {
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
 
-		Iterator<PrologClause> iengine = engine.getProgramClauses().iterator();
+		Iterator<PrologClause> iengine = engine.iterator();
 
-		PrologClause rule = iengine.next();
+		// in global test invert the order
 		PrologClause fact = iengine.next();
+		PrologClause rule = iengine.next();
 
 		assertFalse(fact.isRule());
 		assertTrue(rule.isRule());
@@ -183,7 +183,7 @@ public class PrologClauseTest extends PrologBaseTest {
 		e.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
 
-		assertTrue(engine.getProgramClauses().iterator().next().unify(e.getProgramClauses().iterator().next()));
+		assertTrue(engine.iterator().next().unify(e.iterator().next()));
 
 	}
 
@@ -193,7 +193,7 @@ public class PrologClauseTest extends PrologBaseTest {
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
 
-		assertFalse(engine.getProgramClauses().iterator().next().isDynamic());
+		assertFalse(engine.iterator().next().isDynamic());
 
 	}
 
@@ -203,7 +203,7 @@ public class PrologClauseTest extends PrologBaseTest {
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
 
-		assertFalse(engine.getProgramClauses().iterator().next().isMultifile());
+		assertFalse(engine.iterator().next().isMultifile());
 
 	}
 
@@ -213,7 +213,7 @@ public class PrologClauseTest extends PrologBaseTest {
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
 
-		assertFalse(engine.getProgramClauses().iterator().next().isDiscontiguous());
+		assertFalse(engine.iterator().next().isDiscontiguous());
 
 	}
 
@@ -221,7 +221,7 @@ public class PrologClauseTest extends PrologBaseTest {
 	public void testGetPrologIndicator() {
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
-		PrologIndicator i = engine.getProgramClauses().iterator().next().getPrologIndicator();
+		PrologIndicator i = engine.iterator().next().getPrologIndicator();
 		assertEquals("grandparent", i.getFunctor());
 		assertEquals(2, i.getArity());
 	}
@@ -237,15 +237,15 @@ public class PrologClauseTest extends PrologBaseTest {
 		e.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
 
-		Iterator<PrologClause> iengine = engine.getProgramClauses().iterator();
-		Iterator<PrologClause> ie = e.getProgramClauses().iterator();
+		Iterator<PrologClause> iengine = engine.iterator();
+		Iterator<PrologClause> ie = e.iterator();
 
 		assertEquals(iengine.next(), ie.next());
 		assertEquals(iengine.next(), ie.next());
 
-		assertTrue(engine.getProgramClauses().iterator().next().equals(e.getProgramClauses().iterator().next()));
-		assertFalse(engine.getProgramClauses().iterator().next().equals(new Object()));
-		assertFalse(engine.getProgramClauses().iterator().next().equals(null));
+		assertTrue(engine.iterator().next().equals(e.iterator().next()));
+		assertFalse(engine.iterator().next().equals(new Object()));
+		assertFalse(engine.iterator().next().equals(null));
 	}
 
 	@Test
@@ -257,8 +257,7 @@ public class PrologClauseTest extends PrologBaseTest {
 
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
-		assertEquals("grandparent(X,Z):-\n\tparent(X,Y),\n\tparent(Y,Z).",
-				engine.getProgramClauses().iterator().next().toString());
+		assertEquals("grandparent(X,Z):-\n\tparent(X,Y),\n\tparent(Y,Z).", engine.iterator().next().toString());
 	}
 
 }

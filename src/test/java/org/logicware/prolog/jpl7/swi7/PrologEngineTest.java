@@ -1014,22 +1014,20 @@ public class PrologEngineTest extends PrologBaseTest {
 		SwiProlog7Engine e = engine.unwrap(SwiProlog7Engine.class);
 		Set<PredicateIndicator> predicates = new HashSet<PredicateIndicator>();
 		String consult5 = "consult('" + e.getCache() + "'),findall(X/Y,current_predicate(X/Y),L)";
-		Query query5 = new Query(consult5);
-		if (query5.hasSolution()) {
-			query5.open();
-			Term term = query5.getSolution().get("L");
-			Term[] termArray = term.toTermArray();
-			for (int i = 0; i < termArray.length; i++) {
-				Term t = termArray[i];
-				Term f = t.arg(1);
-				Term a = t.arg(2);
-				int arity = a.intValue();
-				String functor = f.name();
-				PredicateIndicator pi = new PredicateIndicator(functor, arity);
-				predicates.add(pi);
+		PrologQuery query = e.query(consult5);
+		if (query.hasSolution()) {
+			Map<String, PrologTerm>[] s = query.allVariablesSolutions();
+			for (Map<String, PrologTerm> map : s) {
+				for (PrologTerm term : map.values()) {
+					if (term.isCompound()) {
+						int arity = term.getArity();
+						String functor = term.getFunctor();
+						PredicateIndicator pi = new PredicateIndicator(functor, arity);
+						predicates.add(pi);
+					}
+				}
 			}
 		}
-		query5.close();
 		assertEquals(predicates, engine.currentPredicates());
 	}
 
