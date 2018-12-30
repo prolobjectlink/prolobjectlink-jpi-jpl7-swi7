@@ -113,7 +113,11 @@ public class PrologEngineTest extends PrologBaseTest {
 	public final void testInclude() {
 
 		engine.include("family.pl");
+		assertFalse(engine.isProgramEmpty());
+		assertEquals(21, engine.getProgramSize());
 		engine.include("company.pl");
+		assertFalse(engine.isProgramEmpty());
+		assertEquals(42, engine.getProgramSize());
 		engine.include("zoo.pl");
 		assertFalse(engine.isProgramEmpty());
 		assertEquals(50, engine.getProgramSize());
