@@ -22,14 +22,14 @@ package org.logicware.prolog.jpl7.swi7;
 import org.logicware.prolog.AbstractConsole;
 import org.logicware.prolog.PrologConsole;
 
-public class SwiPrologConsole extends AbstractConsole implements PrologConsole {
+public class SwiProlog7Console extends AbstractConsole implements PrologConsole {
 
-	public SwiPrologConsole() {
+	public SwiProlog7Console() {
 		super(new SwiProlog7());
 	}
 
 	public static void main(String[] args) {
-		new SwiPrologConsole().run(args);
+		new SwiProlog7Console().run(args);
 	}
 
 }
