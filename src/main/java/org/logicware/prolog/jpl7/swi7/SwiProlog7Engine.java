@@ -58,43 +58,4 @@ public final class SwiProlog7Engine extends JplEngine implements PrologEngine {
 		return "SWI-Prolog";
 	}
 
-	@Override
-	protected final synchronized Iterator<PrologClause> iterator(String path) {
-		Query query = new Query(
-
-				"consult('" + path + "')," +
-
-						"findall(" +
-
-						/* tab */"Head:-Body," +
-
-						/* tab */"(" +
-
-						/* tab *//* tab */"predicate_property(Head, file('" + path + "')),clause(Head,Body)" +
-
-						/* tab */")," +
-
-						/* tab */"X" +
-
-						")."
-
-		);
-		Term term = query.oneSolution().get(KEY);
-		Term[] array = Util.listToTermArray(term);
-		List<PrologClause> cls = new ArrayList<PrologClause>(array.length);
-		for (int i = 0; i < array.length; i++) {
-			if (array[i].hasFunctor(":-", 2)) {
-				PrologTerm head = toTerm(array[i].arg(1), PrologTerm.class);
-				PrologTerm body = toTerm(array[i].arg(2), PrologTerm.class);
-				if (body.getType() != PrologTermType.TRUE_TYPE) {
-					cls.add(new SwiProlog7Clause(provider, head, body, false, false, false));
-				} else {
-					cls.add(new SwiProlog7Clause(provider, head, false, false, false));
-				}
-			}
-		}
-		query.close();
-		return new PrologProgramIterator(cls);
-	}
-
 }
