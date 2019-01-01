@@ -231,7 +231,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<mainClass>
-								org.logicware.prolog.jpl7.swi7.Swi7PrologConsole
+								org.logicware.prolog.jpl7.swi7.SwiProlog7Console
 							</mainClass>
 						</manifest>
 						<manifestEntries>
@@ -260,36 +260,6 @@
 					<includes>
 						<include>**/*Test.java</include>
 					</includes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>
-								org.logicware.prolog.tuprolog.SwiPrologConsole
-							</mainClass>
-						</manifest>
-						<manifestEntries>
-							<Built-By>WorkLogic Project</Built-By>
-						</manifestEntries>
-						<manifestSections>
-							<manifestSection>
-								<name>Prolobjectlink-JPI-JPL7-SWI7</name>
-								<manifestEntries>
-									<Specification-Title>Prolobjectlink-JPI-JPL7-SWI7 Library</Specification-Title>
-									<Specification-Version>${project.version}</Specification-Version>
-									<Specification-Vendor>WorkLogic Project</Specification-Vendor>
-									<Implementation-Title>Prolobjectlink-JPI-JPL7-SWI7</Implementation-Title>
-									<Implementation-Version>${project.version}</Implementation-Version>
-									<Implementation-Vendor>WorkLogic Project</Implementation-Vendor>
-								</manifestEntries>
-							</manifestSection>
-						</manifestSections>
-					</archive>
 				</configuration>
 			</plugin>
 			<plugin>
