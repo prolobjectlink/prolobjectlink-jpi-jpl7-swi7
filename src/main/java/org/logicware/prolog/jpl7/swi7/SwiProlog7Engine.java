@@ -19,21 +19,13 @@
  */
 package org.logicware.prolog.jpl7.swi7;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import org.jpl7.JPL;
 import org.jpl7.Query;
 import org.jpl7.Term;
-import org.jpl7.Util;
-import org.logicware.Licenses;
-import org.logicware.prolog.PrologClause;
 import org.logicware.prolog.PrologEngine;
 import org.logicware.prolog.PrologProvider;
-import org.logicware.prolog.PrologTerm;
-import org.logicware.prolog.PrologTermType;
 import org.logicware.prolog.jpl7.JplEngine;
+import org.worklogic.Licenses;
 
 public final class SwiProlog7Engine extends JplEngine implements PrologEngine {
 
