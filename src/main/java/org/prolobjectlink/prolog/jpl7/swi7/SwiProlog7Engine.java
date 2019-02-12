@@ -31,7 +31,7 @@ package org.prolobjectlink.prolog.jpl7.swi7;
 import org.jpl7.JPL;
 import org.jpl7.Query;
 import org.jpl7.Term;
-import org.prolobjectlink.Licenses;
+import org.prolobjectlink.prolog.Licenses;
 import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.jpl7.JplEngine;
