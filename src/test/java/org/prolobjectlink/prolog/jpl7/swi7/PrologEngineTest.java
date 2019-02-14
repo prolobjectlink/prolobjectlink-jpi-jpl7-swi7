@@ -59,7 +59,6 @@ import org.prolobjectlink.prolog.PrologStructure;
 import org.prolobjectlink.prolog.PrologTerm;
 import org.prolobjectlink.prolog.PrologVariable;
 import org.prolobjectlink.prolog.jpl7.JplOperator;
-import org.prolobjectlink.prolog.jpl7.swi7.SwiProlog7Engine;
 
 public class PrologEngineTest extends PrologBaseTest {
 
@@ -1023,7 +1022,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	@Test
 	public final void testCurrentPredicates() {
 		String KEY = "X";
-		SwiProlog7Engine e = engine.unwrap(SwiProlog7Engine.class);
+		SwiProlog7Engine e = (SwiProlog7Engine) engine;
 		Set<PrologIndicator> predicates = new HashSet<PrologIndicator>();
 		String opQuery = "consult('" + e.getCache() + "')," + "findall(X/Y,current_predicate(X/Y)," + KEY + ")";
 		Query query = new Query(opQuery);
