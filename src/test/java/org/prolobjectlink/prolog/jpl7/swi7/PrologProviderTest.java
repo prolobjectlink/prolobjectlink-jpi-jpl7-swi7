@@ -239,4 +239,18 @@ public class PrologProviderTest extends PrologBaseTest {
 
 	}
 
+	@Test
+	public final void testToString() {
+
+		assertEquals(
+				SwiProlog7.class.getSimpleName() + " [converter=" + SwiProlog7Converter.class.getSimpleName() + "]",
+				provider.toString());
+
+	}
+
+	@Test
+	public final void testGetLogger() {
+		assertNotNull(provider.getLogger());
+	}
+
 }

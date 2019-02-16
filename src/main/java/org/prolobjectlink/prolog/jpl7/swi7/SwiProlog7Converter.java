@@ -39,4 +39,9 @@ public class SwiProlog7Converter extends JplConverter implements PrologConverter
 		return new SwiProlog7(this);
 	}
 
+	@Override
+	public String toString() {
+		return "SwiProlog7Converter";
+	}
+
 }

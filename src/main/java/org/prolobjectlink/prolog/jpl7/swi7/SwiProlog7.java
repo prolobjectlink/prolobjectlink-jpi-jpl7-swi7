@@ -50,7 +50,7 @@ public class SwiProlog7 extends JplProvider implements PrologProvider {
 
 	@Override
 	public String toString() {
-		return "SwiPrologProvider [converter=" + converter + "]";
+		return "SwiProlog7 [converter=" + converter + "]";
 	}
 
 }

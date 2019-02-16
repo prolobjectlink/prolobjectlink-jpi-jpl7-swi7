@@ -42,10 +42,6 @@ public final class SwiProlog7Engine extends JplEngine implements PrologEngine {
 		super(provider);
 	}
 
-	SwiProlog7Engine(PrologProvider provider, String file) {
-		super(provider, file);
-	}
-
 	public final String getLicense() {
 		return Licenses.LGPL_V3;
 	}
