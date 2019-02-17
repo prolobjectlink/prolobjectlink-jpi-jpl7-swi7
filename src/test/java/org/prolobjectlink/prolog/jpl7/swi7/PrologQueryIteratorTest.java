@@ -28,7 +28,6 @@ package org.prolobjectlink.prolog.jpl7.swi7;
  * #L%
  */
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -100,6 +99,14 @@ public class PrologQueryIteratorTest extends PrologBaseTest {
 	@Test
 	public final void testHasNext() {
 		assertTrue(i.hasNext());
+//		System.out.println(i.next());
+//		System.out.println(i.next());
+//		System.out.println(i.next());
+//		System.out.println(i.next());
+//		System.out.println(i.next());
+//		System.out.println(i.next());
+//		System.out.println(i.next());
+//		assertFalse(i.hasNext());
 	}
 
 	@Test
@@ -114,7 +121,8 @@ public class PrologQueryIteratorTest extends PrologBaseTest {
 		assertEquals(Arrays.asList(administration, fourThousandFiveHundred, eight, petersen, five),
 				new ArrayList<PrologTerm>(i.next()));
 		assertEquals(Arrays.asList(board, fourThousand, seven, cohn, one), new ArrayList<PrologTerm>(i.next()));
-//		assertThrows(NoSuchElementException.class, i.next());
+		assertEquals(Arrays.asList(board, fiveThousand, nine, duffy, one), new ArrayList<PrologTerm>(i.next()));
+		// assertThrows(NoSuchElementException.class, i.next());
 		assertFalse(i.hasNext());
 
 	}
