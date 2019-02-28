@@ -49,7 +49,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.prolobjectlink.prolog.Licenses;
-import org.prolobjectlink.prolog.PredicateIndicator;
 import org.prolobjectlink.prolog.PrologAtom;
 import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologIndicator;
@@ -58,6 +57,7 @@ import org.prolobjectlink.prolog.PrologQuery;
 import org.prolobjectlink.prolog.PrologStructure;
 import org.prolobjectlink.prolog.PrologTerm;
 import org.prolobjectlink.prolog.PrologVariable;
+import org.prolobjectlink.prolog.jpl7.JplIndicator;
 import org.prolobjectlink.prolog.jpl7.JplOperator;
 
 public class PrologEngineTest extends PrologBaseTest {
@@ -1036,7 +1036,7 @@ public class PrologEngineTest extends PrologBaseTest {
 				int arity = a.intValue();
 				String functor = f.name();
 
-				PredicateIndicator pi = new PredicateIndicator(functor, arity);
+				JplIndicator pi = new JplIndicator(functor, arity);
 				predicates.add(pi);
 			}
 		}

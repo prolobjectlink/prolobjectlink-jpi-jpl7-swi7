@@ -28,17 +28,17 @@ package org.prolobjectlink.prolog.jpl7.swi7;
  * #L%
  */
 
-
 import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.prolobjectlink.prolog.PredicateIndicator;
+import org.prolobjectlink.prolog.PrologIndicator;
+import org.prolobjectlink.prolog.jpl7.JplIndicator;
 
 public class PrologIndicatorTest extends PrologBaseTest {
 
-	private final PredicateIndicator pi = new PredicateIndicator("functor", 3);
+	private final PrologIndicator pi = new JplIndicator("functor", 3);
 
 	@Before
 	public void setUp() throws Exception {
@@ -70,12 +70,12 @@ public class PrologIndicatorTest extends PrologBaseTest {
 
 	@Test
 	public final void testHashCode() {
-		assertEquals(new PredicateIndicator("functor", 3).hashCode(), pi.hashCode());
+		assertEquals(new JplIndicator("functor", 3).hashCode(), pi.hashCode());
 	}
 
 	@Test
 	public final void testEquals() {
-		assertEquals(new PredicateIndicator("functor", 3), pi);
+		assertEquals(new JplIndicator("functor", 3), pi);
 	}
 
 }
