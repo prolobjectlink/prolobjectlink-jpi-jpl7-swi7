@@ -27,6 +27,12 @@
 			<directory>${project.basedir}/bin</directory>
 			<outputDirectory>bin</outputDirectory>
 		</fileSet>
+		
+		<!-- demostration folder -->
+		<fileSet>
+			<directory>${project.basedir}/demo</directory>
+			<outputDirectory>demo</outputDirectory>
+		</fileSet>
 
 		<!-- api documentation -->
 		<fileSet>
