@@ -37,6 +37,7 @@ import org.jpl7.Query;
 import org.jpl7.Term;
 import org.prolobjectlink.prolog.Licenses;
 import org.prolobjectlink.prolog.PrologEngine;
+import org.prolobjectlink.prolog.PrologProgrammer;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.jpl7.JplEngine;
 
@@ -49,6 +50,10 @@ public final class SwiProlog7Engine extends JplEngine implements PrologEngine {
 
 	SwiProlog7Engine(PrologProvider provider) {
 		super(provider);
+	}
+
+	public final PrologProgrammer getProgrammer() {
+		return new SwiProlog7Programmer(provider);
 	}
 
 	public final String getLicense() {
@@ -82,7 +87,8 @@ public final class SwiProlog7Engine extends JplEngine implements PrologEngine {
 		} else if (runOnLinux()) {
 			list.add("/usr/lib/jvm/java-" + javaVersion + "-openjdk-" + getOsArch() + "/bin" + pathSeparator);
 			list.add("/usr/lib/jvm/java-" + javaVersion + "-openjdk-" + getOsArch() + "/lib/tools.jar" + pathSeparator);
-			list.add("/usr/lib/jvm/java-" + javaVersion + "-openjdk-" + getOsArch() + "/jre/lib/rt.jar" + pathSeparator);
+			list.add(
+					"/usr/lib/jvm/java-" + javaVersion + "-openjdk-" + getOsArch() + "/jre/lib/rt.jar" + pathSeparator);
 			list.add("/usr/local/bin/swipl/lib/jpl.jar" + pathSeparator);
 			list.add("/usr/local/bin");
 		}
