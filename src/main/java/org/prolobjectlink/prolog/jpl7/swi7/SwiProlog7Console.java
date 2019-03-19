@@ -31,6 +31,11 @@ package org.prolobjectlink.prolog.jpl7.swi7;
 import org.prolobjectlink.prolog.AbstractConsole;
 import org.prolobjectlink.prolog.PrologConsole;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public class SwiProlog7Console extends AbstractConsole implements PrologConsole {
 
 	public SwiProlog7Console() {

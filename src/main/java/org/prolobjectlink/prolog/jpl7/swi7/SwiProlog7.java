@@ -34,6 +34,11 @@ import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.jpl7.JplProvider;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public class SwiProlog7 extends JplProvider implements PrologProvider {
 
 	public SwiProlog7() {
