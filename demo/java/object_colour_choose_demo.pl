@@ -1,35 +1,44 @@
-/*
- * Copyright (C) 2019 Prolobjectlink Project
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+% Copyright (c) 2019 Prolobjectlink Project
 
+% Permission is hereby granted, free of charge, to any person obtaining a copy
+% of this software and associated documentation files (the "Software"), to deal
+% in the Software without restriction, including without limitation the rights
+% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+% copies of the Software, and to permit persons to whom the Software is
+% furnished to do so, subject to the following conditions:
 
-% shoes a JColorChooser dialog, on top of a (necessary) JFrame,
-% and awaits OK/Cancel click
+% The above copyright notice and this permission notice shall be included in
+% all copies or substantial portions of the Software.
 
-:-consult('../../obj/prolobject.pl').
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+% THE SOFTWARE.
+
+% Author: Jose Zalacain
+
+:-consult('../../prt/prolog/awt/color.pl').
+:-consult('../../prt/prologx/swing/j_frame.pl').
+:-consult('../../prt/prologx/swing/j_color_chooser.pl').
 
 object_colour_choose_demo :-
-    object_new('javax.swing.JFrame', ['frame with dialog'], F),
-    object_call(F, setLocation, [400,300], _),
-    object_call(F, setSize, [400,300], _),
-    object_call(F, setVisible, [@(true)], _),
-    object_call(F, toFront, [], _),
-    object_call(F, getContentPane, [], CP),
+	j_frame('frame with dialog', F),
+	j_frame_set_location(F, 400, 300,_),
+    j_frame_set_size(F, 400, 300, _),
+    j_frame_set_visible(F, @(true), _),
+    j_frame_to_front(F, _),
+    j_frame_get_content_pane(F, CP),
+    
+%    constants are needed
     object_get('java.awt.Color', pink, Pink),
-    object_call('javax.swing.JColorChooser', showDialog, [CP,'pick a colo(u)r',Pink], C),
-    object_call(F, dispose, [], _),
+    
+    j_color_chooser(C),
+    j_color_chooser_show_dialog(C, CP,'pick a colo(u)r',Pink, _),
+    j_frame_dispose(F, _),
+    
     (       C == @(null)
     ->      write('you cancelled')
     ;       write('you chose '), write(C)
@@ -40,5 +49,5 @@ object_colour_choose_demo :-
 
 % this directive runs the above demo
 
-:- object_colour_choose_demo. 
+:- object_colour_choose_demo.
 

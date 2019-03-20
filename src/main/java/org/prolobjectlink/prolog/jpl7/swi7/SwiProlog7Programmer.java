@@ -1,6 +1,6 @@
 /*-
  * #%L
- * prolobjectlink-jpi
+ * prolobjectlink-jpi-jpl7-swi7
  * %%
  * Copyright (C) 2012 - 2019 Prolobjectlink Project
  * %%
