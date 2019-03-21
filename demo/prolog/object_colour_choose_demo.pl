@@ -20,25 +20,31 @@
 
 % Author: Jose Zalacain
 
-:-consult('../../obj/prolobject.pl').
+:-consult('../../prt/prolog/awt/color.pl').
+:-consult('../../prt/prologx/swing/j_frame.pl').
+:-consult('../../prt/prologx/swing/j_color_chooser.pl').
 
-jpl_versions_demo :-
-    jpl_call('org.jpl7.JPL', version_string, [], Vj),
-    jpl_c_lib_version(Vc),
-    jpl_pl_lib_version(Vp),
-    nl,
-    write('prolog library version: '), write( Vp), nl,
-    write('  java library version: '), write( Vj), nl,
-    write('     c library version: '), write( Vc), nl,
-    (       Vp == Vj,
-            Vj == Vc
-    ->      write('BINGO! you appear to have the same version of each library installed'), nl
-    ;       write('WHOOPS! you appear not to have the same version of each library installed'), nl
+object_colour_choose_demo :-
+	j_frame('frame with dialog', F),
+	j_frame_set_location(F, 400, 300,_),
+    j_frame_set_size(F, 400, 300, _),
+    j_frame_set_visible(F, @(true), _),
+    j_frame_to_front(F, _),
+    j_frame_get_content_pane(F, CP),
+	color_pink(Pink),
+    j_color_chooser(C),
+    j_color_chooser_show_dialog(C, CP,'pick a colo(u)r',Pink, _),
+    j_frame_dispose(F, _),
+    
+    (       C == @(null)
+    ->      write('you cancelled')
+    ;       write('you chose '), write(C)
     ),
     nl.
+    
 
 
 % this directive runs the above demo
 
-:- jpl_versions_demo.
+:- object_colour_choose_demo.
 
