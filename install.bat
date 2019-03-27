@@ -1,3 +1,7 @@
 @echo off
+
 SET CURRENT_DIRECTORY=%~dp0
-%CURRENT_DIRECTORY%\bin\pllink -g
+SET CLASSPATH=%CURRENT_DIRECTORY%lib\*
+
+: default jdk
+java -classpath %CLASSPATH% org.prolobjectlink.prolog.jpl7.swi7.SwiProlog7Console -g
