@@ -45,9 +45,9 @@ import org.prolobjectlink.prolog.jpl7.JplEngine;
  * @author Jose Zalacain
  * @since 1.0
  */
-public final class SwiProlog7Engine extends JplEngine implements PrologEngine {
+public class SwiProlog7Engine extends JplEngine implements PrologEngine {
 
-	SwiProlog7Engine(PrologProvider provider) {
+	protected SwiProlog7Engine(PrologProvider provider) {
 		super(provider);
 	}
 
