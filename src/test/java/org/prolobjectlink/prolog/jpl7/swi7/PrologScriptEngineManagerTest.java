@@ -1,8 +1,8 @@
-/*
+/*-
  * #%L
  * prolobjectlink-jpi-jpl7-swi7
  * %%
- * Copyright (C) 2019 Prolobjectlink Project
+ * Copyright (C) 2012 - 2019 Prolobjectlink Project
  * %%
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -28,40 +28,31 @@
  */
 package org.prolobjectlink.prolog.jpl7.swi7;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
+import javax.script.ScriptEngine;
 import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
-import org.jpl7.Term;
-import org.prolobjectlink.prolog.PrologConverter;
-import org.prolobjectlink.prolog.PrologEngine;
-import org.prolobjectlink.prolog.PrologProvider;
-import org.prolobjectlink.prolog.jpl7.JplProvider;
+import org.junit.Test;
 
-/**
- * 
- * @author Jose Zalacain
- * @since 1.0
- */
-public class SwiProlog7 extends JplProvider implements PrologProvider {
+public class PrologScriptEngineManagerTest extends PrologBaseTest {
 
-	public SwiProlog7() {
-		super(new SwiProlog7Converter());
-	}
+	@Test
+	public void test() throws ScriptException {
 
-	public SwiProlog7(PrologConverter<Term> converter) {
-		super(converter);
-	}
+		ScriptEngineManager manager = new ScriptEngineManager();
+		List<ScriptEngineFactory> factories = manager.getEngineFactories();
+		assertTrue(factories.contains(provider.getScriptFactory()));
 
-	public ScriptEngineFactory getScriptFactory() {
-		return new SwiProlog7ScriptFactory(newEngine());
-	}
+		ScriptEngine engine = manager.getEngineByName(provider.getName());
+		assertEquals(true, engine.eval("?- X is 5+3."));
+		assertEquals(provider.newInteger(8), engine.get("X"));
 
-	public PrologEngine newEngine() {
-		return new SwiProlog7Engine(this);
-	}
-
-	@Override
-	public String toString() {
-		return "SwiProlog7 [converter=" + converter + "]";
 	}
 
 }

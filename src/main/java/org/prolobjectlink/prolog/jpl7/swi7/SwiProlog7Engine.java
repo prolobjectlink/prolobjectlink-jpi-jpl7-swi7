@@ -32,12 +32,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.script.ScriptEngine;
+
 import org.jpl7.JPL;
 import org.jpl7.Query;
 import org.jpl7.Term;
 import org.prolobjectlink.prolog.Licenses;
 import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologProvider;
+import org.prolobjectlink.prolog.PrologScriptEngine;
 import org.prolobjectlink.prolog.jpl7.JplEngine;
 
 /**
@@ -49,6 +52,10 @@ public class SwiProlog7Engine extends JplEngine implements PrologEngine {
 
 	protected SwiProlog7Engine(PrologProvider provider) {
 		super(provider);
+	}
+
+	public final ScriptEngine getPrologScript() {
+		return new PrologScriptEngine(new SwiProlog7ScriptFactory(this), this);
 	}
 
 	public final String getLicense() {
