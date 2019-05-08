@@ -74,16 +74,16 @@ public class PrologScriptEngineFactoryTest extends PrologBaseTest {
 
 	@Test
 	public void testGetLanguageVersion() {
-		assertEquals(provider.newEngine().getVersion(), sef.getLanguageVersion());
+		assertEquals(provider.getVersion(), sef.getLanguageVersion());
 	}
 
 	@Test
 	public void testGetParameter() {
-		assertEquals(provider.newEngine().getName(), sef.getParameter(ScriptEngine.NAME));
-		assertEquals(provider.newEngine().getName(), sef.getParameter(ScriptEngine.ENGINE));
-		assertEquals(provider.newEngine().getVersion(), sef.getParameter(ScriptEngine.ENGINE_VERSION));
+		assertEquals(provider.getName(), sef.getParameter(ScriptEngine.NAME));
+		assertEquals(provider.getName(), sef.getParameter(ScriptEngine.ENGINE));
+		assertEquals(provider.getVersion(), sef.getParameter(ScriptEngine.ENGINE_VERSION));
 		assertEquals("Prolog", sef.getParameter(ScriptEngine.LANGUAGE));
-		assertEquals(provider.newEngine().getVersion(), sef.getParameter(ScriptEngine.LANGUAGE_VERSION));
+		assertEquals(provider.getVersion(), sef.getParameter(ScriptEngine.LANGUAGE_VERSION));
 	}
 
 	@Test
