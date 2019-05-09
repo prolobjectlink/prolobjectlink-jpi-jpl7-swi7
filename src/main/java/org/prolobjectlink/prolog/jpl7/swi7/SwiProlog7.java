@@ -56,10 +56,6 @@ public class SwiProlog7 extends JplProvider implements PrologProvider {
 		return new SwiProlog7JavaConverter(this);
 	}
 
-	public ScriptEngineFactory getScriptFactory() {
-		return new SwiProlog7ScriptFactory(newEngine());
-	}
-
 	public PrologEngine newEngine() {
 		return new SwiProlog7Engine(this);
 	}
