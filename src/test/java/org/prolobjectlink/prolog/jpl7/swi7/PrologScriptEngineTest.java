@@ -1,29 +1,22 @@
 /*-
  * #%L
- * prolobjectlink-jpi-jpl7-swi7
+ * prolobjectlink-jpi-jlog
  * %%
  * Copyright (C) 2012 - 2019 Prolobjectlink Project
  * %%
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 2 of the
+ * License, or (at your option) any later version.
  * 
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * You should have received a copy of the GNU General Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/gpl-2.0.html>.
  * #L%
  */
 package org.prolobjectlink.prolog.jpl7.swi7;
@@ -70,7 +63,7 @@ public class PrologScriptEngineTest extends PrologBaseTest {
 	@Test
 	public void testGetContext() throws ScriptException {
 		assertEquals(true, engine.eval("?- X is 5+3."));
-		assertEquals(provider.newInteger(8), engine.get("X"));
+		assertEquals(8, engine.get("X"));
 		assertNotNull(engine.getContext());
 	}
 
@@ -78,7 +71,7 @@ public class PrologScriptEngineTest extends PrologBaseTest {
 	public void testGetBindingsInt() throws ScriptException {
 		assertEquals(0, engine.getBindings(ScriptContext.ENGINE_SCOPE).size());
 		assertEquals(true, engine.eval("?- X is 5+3."));
-		assertEquals(provider.newInteger(8), engine.get("X"));
+		assertEquals(8, engine.get("X"));
 		assertEquals(1, engine.getBindings(ScriptContext.ENGINE_SCOPE).size());
 	}
 
@@ -98,51 +91,51 @@ public class PrologScriptEngineTest extends PrologBaseTest {
 	@Test
 	public void testGetString() throws ScriptException {
 		assertEquals(true, engine.eval("?- X is 5+3."));
-		assertEquals(provider.newInteger(8), engine.get("X"));
+		assertEquals(8, engine.get("X"));
 	}
 
 	@Test
 	public void testEvalStringScriptContext() throws ScriptException {
 		assertEquals(true, engine.eval("?- X is 5+3.", engine.getContext()));
-		assertEquals(provider.newInteger(8), engine.get("X"));
+		assertEquals(8, engine.get("X"));
 	}
 
 	@Test
 	public void testEvalReaderScriptContext() throws ScriptException {
 		assertEquals(true, engine.eval(new StringReader("?- X is 5+3."), engine.getContext()));
-		assertEquals(provider.newInteger(8), engine.get("X"));
+		assertEquals(8, engine.get("X"));
 	}
 
 	@Test
 	public void testEvalReaderBindings() throws ScriptException {
 		assertEquals(true, engine.eval(new StringReader("?- X is 5+3."), bindings));
-		assertEquals(provider.newInteger(8), engine.get("X"));
+		assertEquals(8, engine.get("X"));
 	}
 
 	@Test
 	public void testEvalStringBindings() throws ScriptException {
 		assertEquals(0, engine.getBindings(ScriptContext.ENGINE_SCOPE).size());
 		assertEquals(true, engine.eval("?- X is 5+3."));
-		assertEquals(provider.newInteger(8), engine.get("X"));
+		assertEquals(8, engine.get("X"));
 		assertEquals(1, engine.getBindings(ScriptContext.ENGINE_SCOPE).size());
 	}
 
 	@Test
 	public void testEvalReader() throws ScriptException {
 		assertEquals(true, engine.eval(new StringReader("?- X is 5+3.")));
-		assertEquals(provider.newInteger(8), engine.get("X"));
+		assertEquals(8, engine.get("X"));
 	}
 
 	@Test
 	public void testEvalString() throws ScriptException {
 		assertEquals(true, engine.eval("?- X is 5+3."));
-		assertEquals(provider.newInteger(8), engine.get("X"));
+		assertEquals(8, engine.get("X"));
 	}
 
 	@Test
 	public void testGetScriptContextBindings() throws ScriptException {
 		assertEquals(true, engine.eval("?- X is 5+3."));
-		assertEquals(provider.newInteger(8), engine.get("X"));
+		assertEquals(8, engine.get("X"));
 		assertNotNull(engine.getContext());
 	}
 

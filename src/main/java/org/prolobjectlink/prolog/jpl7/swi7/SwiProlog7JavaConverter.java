@@ -1,8 +1,8 @@
-/*
+/*-
  * #%L
  * prolobjectlink-jpi-jpl7-swi7
  * %%
- * Copyright (C) 2019 Prolobjectlink Project
+ * Copyright (C) 2012 - 2019 Prolobjectlink Project
  * %%
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -28,45 +28,14 @@
  */
 package org.prolobjectlink.prolog.jpl7.swi7;
 
-import javax.script.ScriptEngineFactory;
-
-import org.jpl7.Term;
-import org.prolobjectlink.prolog.PrologConverter;
-import org.prolobjectlink.prolog.PrologEngine;
+import org.prolobjectlink.prolog.AbstractJavaConverter;
 import org.prolobjectlink.prolog.PrologJavaConverter;
 import org.prolobjectlink.prolog.PrologProvider;
-import org.prolobjectlink.prolog.jpl7.JplProvider;
 
-/**
- * 
- * @author Jose Zalacain
- * @since 1.0
- */
-public class SwiProlog7 extends JplProvider implements PrologProvider {
+public class SwiProlog7JavaConverter extends AbstractJavaConverter implements PrologJavaConverter {
 
-	public SwiProlog7() {
-		super(new SwiProlog7Converter());
-	}
-
-	public SwiProlog7(PrologConverter<Term> converter) {
-		super(converter);
-	}
-
-	public PrologJavaConverter getJavaConverter() {
-		return new SwiProlog7JavaConverter(this);
-	}
-
-	public ScriptEngineFactory getScriptFactory() {
-		return new SwiProlog7ScriptFactory(newEngine());
-	}
-
-	public PrologEngine newEngine() {
-		return new SwiProlog7Engine(this);
-	}
-
-	@Override
-	public String toString() {
-		return "SwiProlog7 [converter=" + converter + "]";
+	public SwiProlog7JavaConverter(PrologProvider provider) {
+		super(provider);
 	}
 
 }
