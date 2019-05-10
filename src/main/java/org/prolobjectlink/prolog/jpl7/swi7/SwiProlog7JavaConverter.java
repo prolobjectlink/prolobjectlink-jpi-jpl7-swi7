@@ -32,9 +32,9 @@ import org.prolobjectlink.prolog.AbstractJavaConverter;
 import org.prolobjectlink.prolog.PrologJavaConverter;
 import org.prolobjectlink.prolog.PrologProvider;
 
-public class SwiProlog7JavaConverter extends AbstractJavaConverter implements PrologJavaConverter {
+final class SwiProlog7JavaConverter extends AbstractJavaConverter implements PrologJavaConverter {
 
-	public SwiProlog7JavaConverter(PrologProvider provider) {
+	SwiProlog7JavaConverter(PrologProvider provider) {
 		super(provider);
 	}
 

@@ -28,8 +28,6 @@
  */
 package org.prolobjectlink.prolog.jpl7.swi7;
 
-import javax.script.ScriptEngineFactory;
-
 import org.jpl7.Term;
 import org.prolobjectlink.prolog.PrologConverter;
 import org.prolobjectlink.prolog.PrologEngine;
@@ -48,7 +46,7 @@ public class SwiProlog7 extends JplProvider implements PrologProvider {
 		super(new SwiProlog7Converter());
 	}
 
-	public SwiProlog7(PrologConverter<Term> converter) {
+	SwiProlog7(PrologConverter<Term> converter) {
 		super(converter);
 	}
 
