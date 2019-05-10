@@ -346,7 +346,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	public final void testAssertaIPrologTerm() {
+	public final void testAssertaPrologTerm() {
 		engine.asserta(provider.newStructure(parent, pam, bob));
 		assertEquals(1, engine.getProgramSize());
 
@@ -373,7 +373,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	public final void testAssertaIPrologTermIPrologTermArray() {
+	public final void testAssertaPrologTermPrologTermArray() {
 		PrologVariable x = provider.newVariable("X", 0);
 		PrologVariable y = provider.newVariable("Y", 1);
 		engine.asserta(provider.newStructure(mother, x, y), provider.newStructure(parent, x, y),
@@ -402,7 +402,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	public final void testAssertzIPrologTerm() {
+	public final void testAssertzPrologTerm() {
 		engine.assertz(provider.newStructure(parent, pam, bob));
 		assertEquals(1, engine.getProgramSize());
 
@@ -429,7 +429,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	public final void testAssertzIPrologTermIPrologTermArray() {
+	public final void testAssertzPrologTermPrologTermArray() {
 		PrologVariable x = provider.newVariable("X", 0);
 		PrologVariable y = provider.newVariable("Y", 1);
 		engine.assertz(provider.newStructure(mother, x, y), provider.newStructure(parent, x, y),
@@ -458,7 +458,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	public final void testClauseIPrologTerm() {
+	public final void testClausePrologTerm() {
 		engine.assertz("parent( pam, bob)");
 		engine.assertz("parent( tom, bob)");
 		engine.assertz("parent( tom, liz)");
@@ -482,7 +482,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	public final void testClauseIPrologTermIPrologTermArray() {
+	public final void testClausePrologTermPrologTermArray() {
 		engine.assertz("parent( pam, bob)");
 		engine.assertz("parent( tom, bob)");
 		engine.assertz("parent( tom, liz)");
@@ -536,7 +536,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	public final void testRetractIPrologTerm() {
+	public final void testRetractPrologTerm() {
 		engine.assertz("parent( pam, bob)");
 		engine.assertz("parent( tom, bob)");
 		engine.assertz("parent( tom, liz)");
@@ -564,7 +564,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	public final void testRetractIPrologTermIPrologTermArray() {
+	public final void testRetractPrologTermPrologTermArray() {
 		engine.assertz("mother( X, Y):-parent( X, Y),female( X)");
 		assertEquals(1, engine.getProgramSize());
 
@@ -609,7 +609,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	public final void testFindIPrologTerm() {
+	public final void testFindPrologTerm() {
 
 		engine.assertz("parent( pam, bob)");
 		engine.assertz("parent( tom, bob)");
@@ -643,7 +643,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	public final void testFindIPrologTermArray() {
+	public final void testFindPrologTermArray() {
 
 		engine.assertz("parent( pam, bob)");
 		engine.assertz("parent( tom, bob)");
@@ -737,7 +737,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	public final void testFindAllIPrologTerm() {
+	public final void testFindAllPrologTerm() {
 
 		engine.assertz("parent( pam, bob)");
 		engine.assertz("parent( tom, bob)");
@@ -794,7 +794,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	public final void testFindAllIPrologTermArray() {
+	public final void testFindAllPrologTermArray() {
 
 		engine.assertz("parent( pam, bob)");
 		engine.assertz("parent( tom, bob)");
@@ -924,7 +924,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	}
 
 	@Test
-	public final void testCreateQueryIPrologTermArray() {
+	public final void testCreateQueryPrologTermArray() {
 
 		// employee relationship
 		engine.assertz("employee( mcardon, 1, 5 )");
