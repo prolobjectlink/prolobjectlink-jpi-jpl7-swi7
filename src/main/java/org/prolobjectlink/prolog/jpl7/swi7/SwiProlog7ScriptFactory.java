@@ -30,17 +30,12 @@ package org.prolobjectlink.prolog.jpl7.swi7;
 
 import javax.script.ScriptEngineFactory;
 
-import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.jpl7.JplScriptFactory;
 
 public class SwiProlog7ScriptFactory extends JplScriptFactory implements ScriptEngineFactory {
 
 	public SwiProlog7ScriptFactory() {
 		super(new SwiProlog7().newEngine());
-	}
-
-	public SwiProlog7ScriptFactory(PrologEngine engine) {
-		super(engine);
 	}
 
 }
