@@ -49,7 +49,6 @@ before_install:
   - export M2_HOME=$PWD/apache-maven-3.5.0
   - export PATH=$M2_HOME/bin:$PATH
   - echo "MAVEN_OPTS='-Dmaven.repo.local=$HOME/.m2/repository -Xmx1g -Dorg.slf4j.simpleLogger.showDateTime=true -Dorg.slf4j.simpleLogger.dateTimeFormat=HH:mm:ss:SSS'" > ~/.mavenrc
-  - cd /tmp
   - wget https://www.swi-prolog.org/download/stable/src/swipl-7.6.4.tar.gz
   - tar -xzvf swipl-7.6.4.tar.gz
   - cd swipl-7.6.4
