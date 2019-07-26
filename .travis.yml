@@ -54,6 +54,7 @@ before_install:
   - cd swipl-7.6.4
   - cp build.templ build.sh
   - ./build.sh
+  - cd ..
   - export PATH=$PATH:/home/bin
   - export PATH=$PATH:/home/lib/amd64
   - export PATH=$PATH:/home/lib/jpl.jar
