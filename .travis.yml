@@ -55,9 +55,9 @@ before_install:
   - cp build.templ build.sh
   - ./build.sh
   - cd ..
-  - export PATH=$PATH:/home/bin
-  - export PATH=$PATH:/home/lib/amd64
-  - export PATH=$PATH:/home/lib/jpl.jar
+  - export PATH=$PATH:/home/travis/lib/swipl-7.6.4/bin
+  - export PATH=$PATH:/home/travis/lib/swipl-7.6.4/lib/amd64
+  - export PATH=$PATH:/home/travis/lib/swipl-7.6.4/lib/jpl.jar
   - export PATH=$PATH:/usr/lib/jvm/java-8-openjdk-amd64/bin
   - export PATH=$PATH:/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar
   - export PATH=$PATH:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar
