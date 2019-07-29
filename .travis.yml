@@ -55,6 +55,7 @@ before_install:
   - cp build.templ build.sh
   - ./build.sh
   - cd ..
+  - pwd
   - chmod -R 777 /home/travis/lib/swipl-7.6.4
   - export PATH=$PATH:/home/travis/lib/swipl-7.6.4/bin
   - export PATH=$PATH:/home/travis/lib/swipl-7.6.4/lib/x86_64-linux
