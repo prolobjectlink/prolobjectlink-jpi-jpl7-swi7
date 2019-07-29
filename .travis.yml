@@ -62,8 +62,7 @@ before_install:
   - export PATH=$PATH:/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar
   - export PATH=$PATH:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar
   - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server
-  - pwd
-  - cd lib
+  - cd /home/travis/lib/swipl-7.6.4
   - ls -l
   - bash /home/travis/lib/swipl-7.6.4/doc/packages/examples/pl/java/env.sh
 
