@@ -49,25 +49,31 @@ before_install:
   - export M2_HOME=$PWD/apache-maven-3.5.0
   - export PATH=$M2_HOME/bin:$PATH
   - echo "MAVEN_OPTS='-Dmaven.repo.local=$HOME/.m2/repository -Xmx1g -Dorg.slf4j.simpleLogger.showDateTime=true -Dorg.slf4j.simpleLogger.dateTimeFormat=HH:mm:ss:SSS'" > ~/.mavenrc
+  - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+  - echo $JAVA_HOME
+  - sudo touch /etc/ld.so.conf.d/java.conf
+  - echo $JAVA_HOME/jre/lib/amd64 | sudo tee -a /etc/ld.so.conf.d/java.conf
+  - echo $JAVA_HOME/jre/lib/amd64/server | sudo tee -a /etc/ld.so.conf.d/java.conf
+  - sudo ldconfig
+  - export PATH=$PATH:$JAVA_HOME/bin
+  - export CLASSPATH=$CLASSPATH:$JAVA_HOME/lib/tools.jar
+  - export CLASSPATH=$CLASSPATH:$JAVA_HOME/jre/lib/rt.jar
   - wget https://www.swi-prolog.org/download/stable/src/swipl-7.6.4.tar.gz
   - tar -xzvf swipl-7.6.4.tar.gz
   - cd swipl-7.6.4
-  - cp build.templ build.sh
-  - ./build.sh
+  - ./configure --with-world
+  - make
+  - sudo make install
+  - cd packages/jpl
+  - ./configure
+  - make
+  - export SWI_HOME=/home/travis/build/prolobjectlink/prolobjectlink-jpi-jpl7-swi7/swipl-7.6.4
+  - export PATH=$PATH:$SWI_HOME/bin
+  - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/travis/build/prolobjectlink/prolobjectlink-jpi-jpl7-swi7/swipl-7.6.4/packages/jpl
+  - export CLASSPATH=$CLASSPATH:/home/travis/build/prolobjectlink/prolobjectlink-jpi-jpl7-swi7/swipl-7.6.4/packages/jpl/jpl.jar
   - cd ..
-  - pwd
-  - chmod -R 777 /home/travis/lib/swipl-7.6.4
-  - export PATH=$PATH:/home/travis/lib/swipl-7.6.4/bin
-  - export PATH=$PATH:/home/travis/lib/swipl-7.6.4/lib/x86_64-linux
-  - export PATH=$PATH:/home/travis/lib/swipl-7.6.4/lib/jpl.jar
-  - export PATH=$PATH:/usr/lib/jvm/java-8-oracle/bin
-  - export PATH=$PATH:/usr/lib/jvm/java-8-oracle/lib/tools.jar
-  - export PATH=$PATH:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar
-  - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-8-oracle/jre/lib/amd64/server
-  - cd /home/travis/lib/swipl-7.6.4/doc/packages/examples/jpl/java
-  - ./env.sh
-  - cd /home/travis/build/prolobjectlink/prolobjectlink-jpi-jpl7-swi7
-  - ls -l
+  - cd ..
+  - cd ..
 
 install:
   -
