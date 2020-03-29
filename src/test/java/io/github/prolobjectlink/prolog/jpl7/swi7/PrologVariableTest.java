@@ -1,0 +1,271 @@
+/*
+ * #%L
+ * prolobjectlink-jpi-jpl7-swi7
+ * %%
+ * Copyright (C) 2019 Prolobjectlink Project
+ * %%
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ * #L%
+ */
+package io.github.prolobjectlink.prolog.jpl7.swi7;
+
+import static io.github.prolobjectlink.prolog.PrologTermType.VARIABLE_TYPE;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import io.github.prolobjectlink.prolog.IndicatorError;
+import io.github.prolobjectlink.prolog.PrologAtom;
+import io.github.prolobjectlink.prolog.PrologDouble;
+import io.github.prolobjectlink.prolog.PrologFloat;
+import io.github.prolobjectlink.prolog.PrologInteger;
+import io.github.prolobjectlink.prolog.PrologList;
+import io.github.prolobjectlink.prolog.PrologLong;
+import io.github.prolobjectlink.prolog.PrologStructure;
+import io.github.prolobjectlink.prolog.PrologTerm;
+import io.github.prolobjectlink.prolog.PrologVariable;
+
+public class PrologVariableTest extends PrologBaseTest {
+
+	private PrologVariable variable;
+
+	@Before
+	public void setUp() throws Exception {
+		variable = provider.newVariable("X", 0);
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public final void testGetArguments() {
+		assertArrayEquals(new PrologInteger[0], variable.getArguments());
+	}
+
+	@Test
+	public final void testIsAnonim() {
+		assertFalse(variable.isAnonymous());
+		assertTrue(provider.newVariable(0).isAnonymous());
+	}
+
+	@Test
+	public final void testGetName() {
+		assertEquals("X", variable.getName());
+	}
+
+	@Test
+	public final void testSetName() {
+		assertEquals("X", variable.getName());
+		variable.setName("Y");
+		assertEquals("Y", variable.getName());
+	}
+
+	@Test(expected = IndicatorError.class)
+	public final void testGetKey() {
+		variable.getIndicator();
+	}
+
+	@Test
+	public final void testGetType() {
+		assertEquals(VARIABLE_TYPE, variable.getType());
+	}
+
+	@Test
+	public final void testIsAtom() {
+		assertFalse(variable.isAtom());
+	}
+
+	@Test
+	public final void testIsNumber() {
+		assertFalse(variable.isNumber());
+	}
+
+	@Test
+	public final void testIsFloat() {
+		assertFalse(variable.isFloat());
+	}
+
+	@Test
+	public final void testIsInteger() {
+		assertFalse(variable.isInteger());
+	}
+
+	@Test
+	public final void testIsVariable() {
+		assertTrue(variable.isVariable());
+	}
+
+	@Test
+	public final void testIsList() {
+		assertFalse(variable.isList());
+	}
+
+	@Test
+	public final void testIsStructure() {
+		assertFalse(variable.isStructure());
+	}
+
+	@Test
+	public final void testIsNil() {
+		assertFalse(variable.isNil());
+	}
+
+	@Test
+	public final void testIsEmptyList() {
+		assertFalse(variable.isEmptyList());
+	}
+
+	@Test
+	public final void testIsExpression() {
+		assertFalse(variable.isEvaluable());
+	}
+
+	public final void testGetArity() {
+		variable.getArity();
+	}
+
+	public final void testGetFunctor() {
+		variable.getFunctor();
+	}
+
+	@Test
+	public final void testUnify() {
+
+		// with atom
+		PrologVariable variable = provider.newVariable("X", 0);
+		PrologAtom atom = provider.newAtom("John Smith");
+		assertTrue(variable.unify(atom));
+
+		// with integer
+		variable = provider.newVariable("X", 0);
+		PrologInteger iValue = provider.newInteger(28);
+		assertTrue(variable.unify(iValue));
+
+		// with long
+		variable = provider.newVariable("X", 0);
+		PrologLong lValue = provider.newLong(28);
+		assertTrue(variable.unify(lValue));
+
+		// with float
+		variable = provider.newVariable("X", 0);
+		PrologFloat fValue = provider.newFloat(36.47);
+		assertTrue(variable.unify(fValue));
+
+		// with double
+		variable = provider.newVariable("X", 0);
+		PrologDouble dValue = provider.newDouble(36.47);
+		assertTrue(variable.unify(dValue));
+
+		// with variable
+		variable = provider.newVariable("X", 0);
+		PrologVariable y = provider.newVariable("Y", 0);
+		assertTrue(variable.unify(variable)); // are
+		// equals
+		assertTrue(variable.unify(y)); // alphabetic
+		// substitution
+
+		// with predicate with occurs check
+		variable = provider.newVariable("X", 0);
+		PrologStructure structure = provider.parseStructure("some_predicate(a,b,c)");
+		assertTrue(variable.unify(structure));
+		structure = provider.parseStructure("structure([X])");
+		assertFalse(variable.unify(structure));
+
+		variable = provider.newVariable("X", 0);
+		structure = provider.parseStructure("structure(A,b,C)");
+		assertTrue(variable.unify(structure));
+
+		// with list
+		variable = provider.newVariable("X", 0);
+		PrologVariable z = provider.newVariable("Z", 0);
+		PrologList flattenList = provider.parseList("[X]");
+		PrologList headTailList = provider.parseList("[Y|[]]");
+		PrologTerm empty = provider.prologEmpty();
+		assertFalse(variable.unify(flattenList));
+		assertFalse(y.unify(headTailList));
+		assertTrue(z.unify(empty));
+	}
+
+	@Test
+	public final void testCompareTo() {
+
+		// with atom
+		PrologVariable variable = provider.newVariable("X", 0);
+		PrologAtom atom = provider.newAtom("John Smith");
+		assertEquals(-1, variable.compareTo(atom));
+
+		// with integer
+		variable = provider.newVariable("X", 0);
+		PrologInteger iValue = provider.newInteger(28);
+		assertEquals(-1, variable.compareTo(iValue));
+
+		// with long
+		variable = provider.newVariable("X", 0);
+		PrologLong lValue = provider.newLong(28);
+		assertEquals(-1, variable.compareTo(lValue));
+
+		// with float
+		variable = provider.newVariable("X", 0);
+		PrologFloat fValue = provider.newFloat(36.47);
+		assertEquals(-1, variable.compareTo(fValue));
+
+		// with double
+		variable = provider.newVariable("X", 0);
+		PrologDouble dValue = provider.newDouble(36.47);
+		assertEquals(-1, variable.compareTo(dValue));
+
+		// with variable
+		variable = provider.newVariable("X", 0);
+		PrologVariable y = provider.newVariable("Y", 0);
+		assertEquals(0, variable.compareTo(variable)); // are
+		// equals
+		assertEquals(-1, variable.compareTo(y)); // alphabetic
+		// substitution
+
+		variable = provider.newVariable("X", 0);
+		PrologStructure structure = provider.parseStructure("some_predicate(a,b,c)");
+		assertEquals(-1, variable.compareTo(structure));
+		structure = provider.parseStructure("structure([X])");
+		assertEquals(-1, variable.compareTo(structure));
+
+		variable = provider.newVariable("X", 0);
+		structure = provider.parseStructure("structure(A,b,C)");
+		assertEquals(-1, variable.compareTo(structure));
+
+		// with list
+		variable = provider.newVariable("X", 0);
+		PrologVariable z = provider.newVariable("Z", 0);
+		PrologList flattenList = provider.parseList("[X]");
+		PrologList headTailList = provider.parseList("[Y|[]]");
+		PrologTerm empty = provider.prologEmpty();
+		assertEquals(-1, variable.compareTo(flattenList));
+		assertEquals(-1, y.compareTo(headTailList));
+		assertEquals(-1, z.compareTo(empty));
+	}
+
+}
