@@ -3,7 +3,7 @@
 <rss version="0.91">
   <channel>
     <title>prolobjectlink-jpi-jpl7-swi7 - Checkstyle report</title>
-    <link>https://github.com/prolobjectlink/prolobjectlink-jpi-jpl7-swi7</link>
+    <link>https://prolobjectlink.github.io/prolobjectlink-jpi-jpl7-swi7</link>
     <description>prolobjectlink-jpi-jpl7-swi7 - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2012 - 2020 Prolobjectlink Project</copyright>
@@ -13,9 +13,9 @@
              Warnings: 0,
              Infos: 0
       </title>
-            <link>https://github.com/prolobjectlink/prolobjectlink-jpi-jpl7-swi7/checkstyle.html</link>
+            <link>https://prolobjectlink.github.io/prolobjectlink-jpi-jpl7-swi7/checkstyle.html</link>
       <description>
-        <p>Click <a href="https://github.com/prolobjectlink/prolobjectlink-jpi-jpl7-swi7/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jpl7-swi7/checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -29,7 +29,7 @@
           <tbody>
                           <tr>
                 <td>
-                  <a href="https://github.com/prolobjectlink/prolobjectlink-jpi-jpl7-swi7/checkstyle.html#io.github.prolobjectlink.prolog.jpl7.swi7.SwiProlog7Console.java">io/github/prolobjectlink/prolog/jpl7/swi7/SwiProlog7Console.java</a>
+                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jpl7-swi7/checkstyle.html#io.github.prolobjectlink.prolog.jpl7.swi7.SwiProlog7Console.java">io/github/prolobjectlink/prolog/jpl7/swi7/SwiProlog7Console.java</a>
                 </td>
                 <td>
                   0
@@ -43,7 +43,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/prolobjectlink/prolobjectlink-jpi-jpl7-swi7/checkstyle.html#io.github.prolobjectlink.prolog.jpl7.swi7.SwiProlog7Converter.java">io/github/prolobjectlink/prolog/jpl7/swi7/SwiProlog7Converter.java</a>
+                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jpl7-swi7/checkstyle.html#io.github.prolobjectlink.prolog.jpl7.swi7.SwiProlog7Converter.java">io/github/prolobjectlink/prolog/jpl7/swi7/SwiProlog7Converter.java</a>
                 </td>
                 <td>
                   0
@@ -57,7 +57,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/prolobjectlink/prolobjectlink-jpi-jpl7-swi7/checkstyle.html#io.github.prolobjectlink.prolog.jpl7.swi7.SwiProlog7JavaConverter.java">io/github/prolobjectlink/prolog/jpl7/swi7/SwiProlog7JavaConverter.java</a>
+                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jpl7-swi7/checkstyle.html#io.github.prolobjectlink.prolog.jpl7.swi7.SwiProlog7JavaConverter.java">io/github/prolobjectlink/prolog/jpl7/swi7/SwiProlog7JavaConverter.java</a>
                 </td>
                 <td>
                   0
@@ -71,7 +71,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/prolobjectlink/prolobjectlink-jpi-jpl7-swi7/checkstyle.html#io.github.prolobjectlink.prolog.jpl7.swi7.SwiProlog7.java">io/github/prolobjectlink/prolog/jpl7/swi7/SwiProlog7.java</a>
+                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jpl7-swi7/checkstyle.html#io.github.prolobjectlink.prolog.jpl7.swi7.SwiProlog7.java">io/github/prolobjectlink/prolog/jpl7/swi7/SwiProlog7.java</a>
                 </td>
                 <td>
                   0
@@ -85,7 +85,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/prolobjectlink/prolobjectlink-jpi-jpl7-swi7/checkstyle.html#io.github.prolobjectlink.prolog.jpl7.swi7.SwiProlog7ScriptFactory.java">io/github/prolobjectlink/prolog/jpl7/swi7/SwiProlog7ScriptFactory.java</a>
+                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jpl7-swi7/checkstyle.html#io.github.prolobjectlink.prolog.jpl7.swi7.SwiProlog7ScriptFactory.java">io/github/prolobjectlink/prolog/jpl7/swi7/SwiProlog7ScriptFactory.java</a>
                 </td>
                 <td>
                   0
@@ -99,7 +99,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/prolobjectlink/prolobjectlink-jpi-jpl7-swi7/checkstyle.html#io.github.prolobjectlink.prolog.jpl7.swi7.SwiProlog7Engine.java">io/github/prolobjectlink/prolog/jpl7/swi7/SwiProlog7Engine.java</a>
+                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jpl7-swi7/checkstyle.html#io.github.prolobjectlink.prolog.jpl7.swi7.SwiProlog7Engine.java">io/github/prolobjectlink/prolog/jpl7/swi7/SwiProlog7Engine.java</a>
                 </td>
                 <td>
                   0
