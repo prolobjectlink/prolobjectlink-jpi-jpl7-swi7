@@ -1,3 +1,31 @@
+/*-
+ * #%L
+ * prolobjectlink-jpi-jpl7-swi7
+ * %%
+ * Copyright (C) 2020 - 2021 Prolobjectlink Project
+ * %%
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ * #L%
+ */
 package io.github.prolobjectlink.prolog.jpl7.swi7;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -37,7 +65,7 @@ public class PrologReferenceTest extends PrologBaseTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
+	@Test(expected = ArrayIndexOutOfBoundsException.class)
 	public void testGetArgument() {
 		assertTrue(ref.getArgument(0).isAtom());
 		assertEquals(provider.newAtom(Prolog.object_to_tag(ref.getObject())), ref.getArgument(0));
@@ -55,7 +83,7 @@ public class PrologReferenceTest extends PrologBaseTest {
 
 	@Test
 	public void testGetFunctor() {
-		assertEquals("@", ref.getFunctor());
+		assertEquals("<jref>", ref.getFunctor());
 	}
 
 	@Test
@@ -65,8 +93,7 @@ public class PrologReferenceTest extends PrologBaseTest {
 
 	@Test
 	public void testGetTerm() {
-		assertEquals(provider.newStructure("@", provider.newAtom(Prolog.object_to_tag(ref.getObject()))),
-				ref.getTerm());
+		assertEquals(provider.newReference(l), ref.getTerm());
 	}
 
 	@Test
@@ -136,7 +163,6 @@ public class PrologReferenceTest extends PrologBaseTest {
 
 	@Test
 	public void testIsCompound() {
-		System.out.println(ref.toString());
 		assertFalse(ref.isCompound());
 	}
 
@@ -195,12 +221,12 @@ public class PrologReferenceTest extends PrologBaseTest {
 
 	@Test
 	public void testGetIndicator() {
-		assertEquals("@/1", ref.getIndicator());
+		assertEquals(ref.getFunctor() + "/" + ref.getArity(), ref.getIndicator());
 	}
 
 	@Test
 	public void testHasIndicator() {
-		assertTrue(ref.hasIndicator("@", 1));
+		assertTrue(ref.hasIndicator(ref.getFunctor(), ref.getArity()));
 	}
 
 	@Test
@@ -260,7 +286,7 @@ public class PrologReferenceTest extends PrologBaseTest {
 		// true because are equals
 		assertTrue(ref.unify(ref));
 		// true because match and their arguments unify
-		assertTrue(ref.unify(structure1));
+		assertFalse(ref.unify(structure1));
 		// false because match but their arguments not unify
 		assertFalse(ref.unify(structure2));
 
@@ -283,15 +309,15 @@ public class PrologReferenceTest extends PrologBaseTest {
 
 		// with atom
 		PrologAtom atom = provider.newAtom("John Doe");
-		assertEquals(1, ref.compareTo(atom));
+		assertEquals(-1, ref.compareTo(atom));
 
 		// with integer
 		PrologInteger iValue = provider.newInteger(28);
-		assertEquals(1, ref.compareTo(iValue));
+		assertEquals(-1, ref.compareTo(iValue));
 
 		// with long
 		PrologLong lValue = provider.newLong(28);
-		assertEquals(1, ref.compareTo(lValue));
+		assertEquals(-1, ref.compareTo(lValue));
 
 		// with float
 		PrologFloat fValue = provider.newFloat(36.47);
@@ -299,11 +325,11 @@ public class PrologReferenceTest extends PrologBaseTest {
 
 		// with double
 		PrologDouble dValue = provider.newDouble(36.47);
-		assertEquals(1, ref.compareTo(dValue));
+		assertEquals(-1, ref.compareTo(dValue));
 
 		// with variable
 		PrologVariable variable = provider.newVariable("X", 0);
-		assertEquals(1, ref.compareTo(variable));
+		assertEquals(-1, ref.compareTo(variable));
 
 		// with predicate
 //		PrologStructure structure1 = provider.parseStructure("@(X)");
@@ -313,9 +339,9 @@ public class PrologReferenceTest extends PrologBaseTest {
 		// true because are equals
 		assertEquals(0, ref.compareTo(ref));
 		// true because match and their arguments compareTo
-		assertEquals(1, ref.compareTo(structure1));
+		assertEquals(-1, ref.compareTo(structure1));
 		// false because match but their arguments not compareTo
-		assertEquals(1, ref.compareTo(structure2));
+		assertEquals(-1, ref.compareTo(structure2));
 
 		// with list
 		PrologList flattenList = provider.parseList("['Some Literal']");
@@ -323,7 +349,7 @@ public class PrologReferenceTest extends PrologBaseTest {
 		PrologTerm empty = provider.prologEmpty();
 		assertEquals(-1, ref.compareTo(flattenList));
 		assertEquals(-1, ref.compareTo(headTailList));
-		assertEquals(1, ref.compareTo(empty));
+		assertEquals(-1, ref.compareTo(empty));
 
 		// with expression
 		PrologTerm expression = provider.parseTerm("58+93*10");
