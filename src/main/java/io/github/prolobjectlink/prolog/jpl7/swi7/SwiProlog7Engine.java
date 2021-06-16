@@ -61,6 +61,10 @@ public class SwiProlog7Engine extends JplEngine implements PrologEngine {
 		return "" + swi.arg(1) + "." + swi.arg(2) + "." + swi.arg(3) + " (JPL v" + JPL.version_string() + ")";
 	}
 
+	public final String getVendor() {
+		return "SWI-Prolog";
+	}
+
 	public final String getName() {
 		return "SWI-Prolog";
 	}
