@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SwiProlog7Engine.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prolobjectlink-jpi-jpl7-swi7</a> &gt; <a href="index.source.html" class="el_package">io.github.prolobjectlink.prolog.jpl7.swi7</a> &gt; <span class="el_source">SwiProlog7Engine.java</span></div><h1>SwiProlog7Engine.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SwiProlog7Engine.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prolobjectlink-jpi-jpl7-swi7</a> &gt; <a href="index.source.html" class="el_package">io.github.prolobjectlink.prolog.jpl7.swi7</a> &gt; <span class="el_source">SwiProlog7Engine.java</span></div><h1>SwiProlog7Engine.java</h1><pre class="source lang-java linenums">/*
  * #%L
  * prolobjectlink-jpi-jpl7-swi7
  * %%
@@ -61,34 +61,38 @@ public class SwiProlog7Engine extends JplEngine implements PrologEngine {
 <span class="fc" id="L61">		return &quot;&quot; + swi.arg(1) + &quot;.&quot; + swi.arg(2) + &quot;.&quot; + swi.arg(3) + &quot; (JPL v&quot; + JPL.version_string() + &quot;)&quot;;</span>
 	}
 
+	public final String getVendor() {
+<span class="nc" id="L65">		return &quot;SWI-Prolog&quot;;</span>
+	}
+
 	public final String getName() {
-<span class="fc" id="L65">		return &quot;SWI-Prolog&quot;;</span>
+<span class="fc" id="L69">		return &quot;SWI-Prolog&quot;;</span>
 	}
 
 	public final List&lt;String&gt; verify() {
-<span class="nc" id="L69">		String slash = File.separator;</span>
-<span class="nc" id="L70">		List&lt;String&gt; list = new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L71">		String javaHome = System.getProperty(&quot;java.home&quot;);</span>
-<span class="nc" id="L72">		String javaVersion = System.getProperty(&quot;java.version&quot;);</span>
-<span class="nc" id="L73">		String pathSeparator = System.getProperty(&quot;path.separator&quot;);</span>
-<span class="nc bnc" id="L74" title="All 2 branches missed.">		if (runOnWindows()) {</span>
-<span class="nc" id="L75">			list.add(javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/bin&quot; + pathSeparator);</span>
-<span class="nc" id="L76">			list.add(javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/lib/tools.jar&quot; + pathSeparator);</span>
-<span class="nc" id="L77">			list.add(</span>
-<span class="nc" id="L78">					javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/jre/lib/rt.jar;&quot; + pathSeparator);</span>
-<span class="nc" id="L79">			list.add(&quot;C:/Program Files/swipl/lib/jpl.jar&quot; + pathSeparator);</span>
-<span class="nc" id="L80">			list.add(&quot;C:/Program Files/swipl/bin&quot;);</span>
-<span class="nc bnc" id="L81" title="All 2 branches missed.">		} else if (runOnOSX()) {</span>
+<span class="nc" id="L73">		String slash = File.separator;</span>
+<span class="nc" id="L74">		List&lt;String&gt; list = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L75">		String javaHome = System.getProperty(&quot;java.home&quot;);</span>
+<span class="nc" id="L76">		String javaVersion = System.getProperty(&quot;java.version&quot;);</span>
+<span class="nc" id="L77">		String pathSeparator = System.getProperty(&quot;path.separator&quot;);</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">		if (runOnWindows()) {</span>
+<span class="nc" id="L79">			list.add(javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/bin&quot; + pathSeparator);</span>
+<span class="nc" id="L80">			list.add(javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/lib/tools.jar&quot; + pathSeparator);</span>
+<span class="nc" id="L81">			list.add(</span>
+<span class="nc" id="L82">					javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/jre/lib/rt.jar;&quot; + pathSeparator);</span>
+<span class="nc" id="L83">			list.add(&quot;C:/Program Files/swipl/lib/jpl.jar&quot; + pathSeparator);</span>
+<span class="nc" id="L84">			list.add(&quot;C:/Program Files/swipl/bin&quot;);</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">		} else if (runOnOSX()) {</span>
 			// TODO environment routes for MacOSX
-<span class="nc bnc" id="L83" title="All 2 branches missed.">		} else if (runOnLinux()) {</span>
-<span class="nc" id="L84">			list.add(&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/bin&quot; + pathSeparator);</span>
-<span class="nc" id="L85">			list.add(&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/lib/tools.jar&quot; + pathSeparator);</span>
-<span class="nc" id="L86">			list.add(</span>
-<span class="nc" id="L87">					&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/jre/lib/rt.jar&quot; + pathSeparator);</span>
-<span class="nc" id="L88">			list.add(&quot;/usr/local/bin/swipl/lib/jpl.jar&quot; + pathSeparator);</span>
-<span class="nc" id="L89">			list.add(&quot;/usr/local/bin&quot;);</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">		} else if (runOnLinux()) {</span>
+<span class="nc" id="L88">			list.add(&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/bin&quot; + pathSeparator);</span>
+<span class="nc" id="L89">			list.add(&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/lib/tools.jar&quot; + pathSeparator);</span>
+<span class="nc" id="L90">			list.add(</span>
+<span class="nc" id="L91">					&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/jre/lib/rt.jar&quot; + pathSeparator);</span>
+<span class="nc" id="L92">			list.add(&quot;/usr/local/bin/swipl/lib/jpl.jar&quot; + pathSeparator);</span>
+<span class="nc" id="L93">			list.add(&quot;/usr/local/bin&quot;);</span>
 		}
-<span class="nc" id="L91">		return list;</span>
+<span class="nc" id="L95">		return list;</span>
 	}
 
 }
