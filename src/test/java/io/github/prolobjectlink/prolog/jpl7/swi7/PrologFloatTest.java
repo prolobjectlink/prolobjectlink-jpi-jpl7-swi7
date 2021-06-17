@@ -40,7 +40,6 @@ import org.junit.Test;
 
 import io.github.prolobjectlink.prolog.ArityError;
 import io.github.prolobjectlink.prolog.FunctorError;
-import io.github.prolobjectlink.prolog.IndicatorError;
 import io.github.prolobjectlink.prolog.PrologAtom;
 import io.github.prolobjectlink.prolog.PrologDouble;
 import io.github.prolobjectlink.prolog.PrologFloat;
@@ -109,7 +108,7 @@ public class PrologFloatTest extends PrologBaseTest {
 		assertEquals(3.140000104904175, f.getFloatValue(), 0);
 	}
 
-	@Test(expected = IndicatorError.class)
+	@Test(expected = FunctorError.class)
 	public final void testGetKey() {
 		f.getIndicator();
 	}
