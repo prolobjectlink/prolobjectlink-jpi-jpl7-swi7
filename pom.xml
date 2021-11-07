@@ -19,7 +19,7 @@
 
 	<licenses>
 		<license>
-			<name>Simplified BSD License</name>
+			<name>BSD License</name>
 			<url>http://www.opensource.org/licenses/bsd-license.php</url>
 		</license>
 	</licenses>
@@ -309,7 +309,7 @@
 					<canUpdateDescription>true</canUpdateDescription>
 					<failOnMissingHeader>true</failOnMissingHeader>
 					<acceptPomPackaging>true</acceptPomPackaging>
-					<licenseName>bsd_2</licenseName>
+					<licenseName>bsd_3</licenseName>
 					<!-- <dryRun>true</dryRun> -->
 					<licenseFile>LICENSE.md</licenseFile>
 					<addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
