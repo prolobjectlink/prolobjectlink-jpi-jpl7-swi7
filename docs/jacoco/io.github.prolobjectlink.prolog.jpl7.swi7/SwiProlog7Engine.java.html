@@ -4,26 +4,30 @@
  * %%
  * Copyright (C) 2019 Prolobjectlink Project
  * %%
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
  * 
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ *    list of conditions and the following disclaimer.
+ * 
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
  * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * 3. Neither the name of the Prolobjectlink Project nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software without
+ *    specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
 package io.github.prolobjectlink.prolog.jpl7.swi7;
@@ -49,50 +53,50 @@ import io.github.prolobjectlink.prolog.jpl7.JplEngine;
 public class SwiProlog7Engine extends JplEngine implements PrologEngine {
 
 	protected SwiProlog7Engine(PrologProvider provider) {
-<span class="fc" id="L52">		super(provider);</span>
-<span class="fc" id="L53">	}</span>
+<span class="fc" id="L56">		super(provider);</span>
+<span class="fc" id="L57">	}</span>
 
 	public final String getLicense() {
-<span class="fc" id="L56">		return Licenses.LGPL_V3;</span>
+<span class="fc" id="L60">		return Licenses.LGPL_V3;</span>
 	}
 
 	public final String getVersion() {
-<span class="fc" id="L60">		Term swi = Query.oneSolution(&quot;current_prolog_flag(version_data,Swi)&quot;).get(&quot;Swi&quot;);</span>
-<span class="fc" id="L61">		return &quot;&quot; + swi.arg(1) + &quot;.&quot; + swi.arg(2) + &quot;.&quot; + swi.arg(3) + &quot; (JPL v&quot; + JPL.version_string() + &quot;)&quot;;</span>
+<span class="fc" id="L64">		Term swi = Query.oneSolution(&quot;current_prolog_flag(version_data,Swi)&quot;).get(&quot;Swi&quot;);</span>
+<span class="fc" id="L65">		return &quot;&quot; + swi.arg(1) + &quot;.&quot; + swi.arg(2) + &quot;.&quot; + swi.arg(3) + &quot; (JPL v&quot; + JPL.version_string() + &quot;)&quot;;</span>
 	}
 
 	public final String getVendor() {
-<span class="nc" id="L65">		return &quot;SWI-Prolog&quot;;</span>
+<span class="nc" id="L69">		return &quot;SWI-Prolog&quot;;</span>
 	}
 
 	public final String getName() {
-<span class="fc" id="L69">		return &quot;SWI-Prolog&quot;;</span>
+<span class="fc" id="L73">		return &quot;SWI-Prolog&quot;;</span>
 	}
 
 	public final List&lt;String&gt; verify() {
-<span class="nc" id="L73">		String slash = File.separator;</span>
-<span class="nc" id="L74">		List&lt;String&gt; list = new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L75">		String javaHome = System.getProperty(&quot;java.home&quot;);</span>
-<span class="nc" id="L76">		String javaVersion = System.getProperty(&quot;java.version&quot;);</span>
-<span class="nc" id="L77">		String pathSeparator = System.getProperty(&quot;path.separator&quot;);</span>
-<span class="nc bnc" id="L78" title="All 2 branches missed.">		if (runOnWindows()) {</span>
-<span class="nc" id="L79">			list.add(javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/bin&quot; + pathSeparator);</span>
-<span class="nc" id="L80">			list.add(javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/lib/tools.jar&quot; + pathSeparator);</span>
-<span class="nc" id="L81">			list.add(</span>
-<span class="nc" id="L82">					javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/jre/lib/rt.jar;&quot; + pathSeparator);</span>
-<span class="nc" id="L83">			list.add(&quot;C:/Program Files/swipl/lib/jpl.jar&quot; + pathSeparator);</span>
-<span class="nc" id="L84">			list.add(&quot;C:/Program Files/swipl/bin&quot;);</span>
-<span class="nc bnc" id="L85" title="All 2 branches missed.">		} else if (runOnOSX()) {</span>
+<span class="nc" id="L77">		String slash = File.separator;</span>
+<span class="nc" id="L78">		List&lt;String&gt; list = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L79">		String javaHome = System.getProperty(&quot;java.home&quot;);</span>
+<span class="nc" id="L80">		String javaVersion = System.getProperty(&quot;java.version&quot;);</span>
+<span class="nc" id="L81">		String pathSeparator = System.getProperty(&quot;path.separator&quot;);</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">		if (runOnWindows()) {</span>
+<span class="nc" id="L83">			list.add(javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/bin&quot; + pathSeparator);</span>
+<span class="nc" id="L84">			list.add(javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/lib/tools.jar&quot; + pathSeparator);</span>
+<span class="nc" id="L85">			list.add(</span>
+<span class="nc" id="L86">					javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/jre/lib/rt.jar;&quot; + pathSeparator);</span>
+<span class="nc" id="L87">			list.add(&quot;C:/Program Files/swipl/lib/jpl.jar&quot; + pathSeparator);</span>
+<span class="nc" id="L88">			list.add(&quot;C:/Program Files/swipl/bin&quot;);</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">		} else if (runOnOSX()) {</span>
 			// TODO environment routes for MacOSX
-<span class="nc bnc" id="L87" title="All 2 branches missed.">		} else if (runOnLinux()) {</span>
-<span class="nc" id="L88">			list.add(&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/bin&quot; + pathSeparator);</span>
-<span class="nc" id="L89">			list.add(&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/lib/tools.jar&quot; + pathSeparator);</span>
-<span class="nc" id="L90">			list.add(</span>
-<span class="nc" id="L91">					&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/jre/lib/rt.jar&quot; + pathSeparator);</span>
-<span class="nc" id="L92">			list.add(&quot;/usr/local/bin/swipl/lib/jpl.jar&quot; + pathSeparator);</span>
-<span class="nc" id="L93">			list.add(&quot;/usr/local/bin&quot;);</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">		} else if (runOnLinux()) {</span>
+<span class="nc" id="L92">			list.add(&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/bin&quot; + pathSeparator);</span>
+<span class="nc" id="L93">			list.add(&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/lib/tools.jar&quot; + pathSeparator);</span>
+<span class="nc" id="L94">			list.add(</span>
+<span class="nc" id="L95">					&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/jre/lib/rt.jar&quot; + pathSeparator);</span>
+<span class="nc" id="L96">			list.add(&quot;/usr/local/bin/swipl/lib/jpl.jar&quot; + pathSeparator);</span>
+<span class="nc" id="L97">			list.add(&quot;/usr/local/bin&quot;);</span>
 		}
-<span class="nc" id="L95">		return list;</span>
+<span class="nc" id="L99">		return list;</span>
 	}
 
 }
