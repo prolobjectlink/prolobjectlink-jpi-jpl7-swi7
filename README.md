@@ -1,4 +1,11 @@
-![GitHub](https://img.shields.io/github/license/prolobjectlink/prolobjectlink-jpi/badge.svg)(https://github.com/prolobjectlink/prolobjectlink-jpi/blob/master/LICENSE.md)
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+![Build Status](https://github.com/prolobjectlink/prolobjectlink-jpi-jpl7-swi7/actions/workflows/maven.yml/badge.svg?event=push)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.prolobjectlink/prolobjectlink-jpi-jpl7-swi7/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/io.github.prolobjectlink/prolobjectlink-jpi-jpl7-swi7)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=prolobjectlink_prolobjectlink-jpi-jpl7-swi7&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=prolobjectlink_prolobjectlink-jpi-jpl7-swi7)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=prolobjectlink_prolobjectlink-jpi-jpl7-swi7&metric=coverage)](https://sonarcloud.io/summary/new_code?id=prolobjectlink_prolobjectlink-jpi-jpl7-swi7)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=prolobjectlink_prolobjectlink-jpi-jpl7-swi7&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=prolobjectlink_prolobjectlink-jpi-jpl7-swi7)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=prolobjectlink_prolobjectlink-jpi-jpl7-swi7&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=prolobjectlink_prolobjectlink-jpi-jpl7-swi7)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=prolobjectlink_prolobjectlink-jpi-jpl7-swi7&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=prolobjectlink_prolobjectlink-jpi-jpl7-swi7)
 
 Java Prolog Interface (JPI) is an Application Provider Interface (API) for interaction between Java and Prolog programming languages. Is a bidirectional interface that communicate Java applications with Prolog program or database and Prolog procedures with Java class and methods.
 
