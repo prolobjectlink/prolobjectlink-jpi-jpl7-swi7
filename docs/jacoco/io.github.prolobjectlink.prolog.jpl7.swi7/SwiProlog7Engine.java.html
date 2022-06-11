@@ -55,48 +55,52 @@ public class SwiProlog7Engine extends JplEngine implements PrologEngine {
 	protected SwiProlog7Engine(PrologProvider provider) {
 <span class="fc" id="L56">		super(provider);</span>
 <span class="fc" id="L57">	}</span>
+	
+	protected SwiProlog7Engine(PrologProvider provider, String file) {
+<span class="nc" id="L60">		super(provider, file);</span>
+<span class="nc" id="L61">	}</span>
 
 	public final String getLicense() {
-<span class="fc" id="L60">		return Licenses.LGPL_V3;</span>
+<span class="fc" id="L64">		return Licenses.LGPL_V3;</span>
 	}
 
 	public final String getVersion() {
-<span class="fc" id="L64">		Term swi = Query.oneSolution(&quot;current_prolog_flag(version_data,Swi)&quot;).get(&quot;Swi&quot;);</span>
-<span class="fc" id="L65">		return &quot;&quot; + swi.arg(1) + &quot;.&quot; + swi.arg(2) + &quot;.&quot; + swi.arg(3) + &quot; (JPL v&quot; + JPL.version_string() + &quot;)&quot;;</span>
+<span class="fc" id="L68">		Term swi = Query.oneSolution(&quot;current_prolog_flag(version_data,Swi)&quot;).get(&quot;Swi&quot;);</span>
+<span class="fc" id="L69">		return &quot;&quot; + swi.arg(1) + &quot;.&quot; + swi.arg(2) + &quot;.&quot; + swi.arg(3) + &quot; (JPL v&quot; + JPL.version_string() + &quot;)&quot;;</span>
 	}
 
 	public final String getVendor() {
-<span class="nc" id="L69">		return &quot;SWI-Prolog&quot;;</span>
+<span class="nc" id="L73">		return &quot;SWI-Prolog&quot;;</span>
 	}
 
 	public final String getName() {
-<span class="fc" id="L73">		return &quot;SWI-Prolog&quot;;</span>
+<span class="fc" id="L77">		return &quot;SWI-Prolog&quot;;</span>
 	}
 
 	public final List&lt;String&gt; verify() {
-<span class="nc" id="L77">		String slash = File.separator;</span>
-<span class="nc" id="L78">		List&lt;String&gt; list = new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L79">		String javaHome = System.getProperty(&quot;java.home&quot;);</span>
-<span class="nc" id="L80">		String javaVersion = System.getProperty(&quot;java.version&quot;);</span>
-<span class="nc" id="L81">		String pathSeparator = System.getProperty(&quot;path.separator&quot;);</span>
-<span class="nc bnc" id="L82" title="All 2 branches missed.">		if (runOnWindows()) {</span>
-<span class="nc" id="L83">			list.add(javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/bin&quot; + pathSeparator);</span>
-<span class="nc" id="L84">			list.add(javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/lib/tools.jar&quot; + pathSeparator);</span>
-<span class="nc" id="L85">			list.add(</span>
-<span class="nc" id="L86">					javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/jre/lib/rt.jar;&quot; + pathSeparator);</span>
-<span class="nc" id="L87">			list.add(&quot;C:/Program Files/swipl/lib/jpl.jar&quot; + pathSeparator);</span>
-<span class="nc" id="L88">			list.add(&quot;C:/Program Files/swipl/bin&quot;);</span>
-<span class="nc bnc" id="L89" title="All 2 branches missed.">		} else if (runOnOSX()) {</span>
+<span class="nc" id="L81">		String slash = File.separator;</span>
+<span class="nc" id="L82">		List&lt;String&gt; list = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L83">		String javaHome = System.getProperty(&quot;java.home&quot;);</span>
+<span class="nc" id="L84">		String javaVersion = System.getProperty(&quot;java.version&quot;);</span>
+<span class="nc" id="L85">		String pathSeparator = System.getProperty(&quot;path.separator&quot;);</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">		if (runOnWindows()) {</span>
+<span class="nc" id="L87">			list.add(javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/bin&quot; + pathSeparator);</span>
+<span class="nc" id="L88">			list.add(javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/lib/tools.jar&quot; + pathSeparator);</span>
+<span class="nc" id="L89">			list.add(</span>
+<span class="nc" id="L90">					javaHome.replace(slash + &quot;jre&quot;, slash) + &quot;/jdk&quot; + javaVersion + &quot;/jre/lib/rt.jar;&quot; + pathSeparator);</span>
+<span class="nc" id="L91">			list.add(&quot;C:/Program Files/swipl/lib/jpl.jar&quot; + pathSeparator);</span>
+<span class="nc" id="L92">			list.add(&quot;C:/Program Files/swipl/bin&quot;);</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">		} else if (runOnOSX()) {</span>
 			// TODO environment routes for MacOSX
-<span class="nc bnc" id="L91" title="All 2 branches missed.">		} else if (runOnLinux()) {</span>
-<span class="nc" id="L92">			list.add(&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/bin&quot; + pathSeparator);</span>
-<span class="nc" id="L93">			list.add(&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/lib/tools.jar&quot; + pathSeparator);</span>
-<span class="nc" id="L94">			list.add(</span>
-<span class="nc" id="L95">					&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/jre/lib/rt.jar&quot; + pathSeparator);</span>
-<span class="nc" id="L96">			list.add(&quot;/usr/local/bin/swipl/lib/jpl.jar&quot; + pathSeparator);</span>
-<span class="nc" id="L97">			list.add(&quot;/usr/local/bin&quot;);</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">		} else if (runOnLinux()) {</span>
+<span class="nc" id="L96">			list.add(&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/bin&quot; + pathSeparator);</span>
+<span class="nc" id="L97">			list.add(&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/lib/tools.jar&quot; + pathSeparator);</span>
+<span class="nc" id="L98">			list.add(</span>
+<span class="nc" id="L99">					&quot;/usr/lib/jvm/java-&quot; + javaVersion + &quot;-openjdk-&quot; + getOSArch() + &quot;/jre/lib/rt.jar&quot; + pathSeparator);</span>
+<span class="nc" id="L100">			list.add(&quot;/usr/local/bin/swipl/lib/jpl.jar&quot; + pathSeparator);</span>
+<span class="nc" id="L101">			list.add(&quot;/usr/local/bin&quot;);</span>
 		}
-<span class="nc" id="L99">		return list;</span>
+<span class="nc" id="L103">		return list;</span>
 	}
 
 }

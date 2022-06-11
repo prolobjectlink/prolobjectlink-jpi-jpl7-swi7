@@ -1,4 +1,4 @@
-Comparing source compatibility of C:\eclipse-jee-photon-workspace\prolobjectlink-jpi-jpl7-swi7\target\prolobjectlink-jpi-jpl7-swi7-1.1-SNAPSHOT.jar against C:\Users\Jose Zalacain\.m2\repository\io\github\prolobjectlink\prolobjectlink-jpi-jpl7-swi7\1.0\prolobjectlink-jpi-jpl7-swi7-1.0.jar
+Comparing source compatibility of C:\eclipse-jee-photon-workspace\prolobjectlink-jpi-jpl7-swi7\target\prolobjectlink-jpi-jpl7-swi7-1.1.jar against C:\Users\Jose Zalacain\.m2\repository\io\github\prolobjectlink\prolobjectlink-jpi-jpl7-swi7\1.0\prolobjectlink-jpi-jpl7-swi7-1.0.jar
 ===  UNCHANGED CLASS: PUBLIC ABSTRACT io.github.prolobjectlink.prolog.jpl7.JplConverter  (not serializable)
 	===  CLASS FILE FORMAT VERSION: 50.0 <- 50.0
 	===  UNCHANGED INTERFACE: io.github.prolobjectlink.prolog.PrologConverter
@@ -15,6 +15,7 @@ Comparing source compatibility of C:\eclipse-jee-photon-workspace\prolobjectlink
 	===  UNCHANGED INTERFACE: java.lang.Iterable
 	===  UNCHANGED SUPERCLASS: io.github.prolobjectlink.prolog.AbstractEngine (<- io.github.prolobjectlink.prolog.AbstractEngine)
 	===  UNCHANGED CONSTRUCTOR: PROTECTED JplEngine(io.github.prolobjectlink.prolog.PrologProvider)
+	+++  NEW CONSTRUCTOR: PROTECTED(+) JplEngine(io.github.prolobjectlink.prolog.PrologProvider, java.lang.String)
 	===  UNCHANGED METHOD: PUBLIC FINAL void abolish(java.lang.String, int)
 	===  UNCHANGED METHOD: PUBLIC FINAL void asserta(java.lang.String)
 	===  UNCHANGED METHOD: PUBLIC FINAL void asserta(io.github.prolobjectlink.prolog.PrologTerm, io.github.prolobjectlink.prolog.PrologTerm[])
@@ -231,12 +232,13 @@ Comparing source compatibility of C:\eclipse-jee-photon-workspace\prolobjectlink
 	---  REMOVED METHOD: PUBLIC(-) boolean hasIndicator(java.lang.String, int)
 	===  UNCHANGED METHOD: PUBLIC boolean isAnonymous()
 	===  UNCHANGED METHOD: PUBLIC void setName(java.lang.String)
-===  UNCHANGED CLASS: PUBLIC io.github.prolobjectlink.prolog.jpl7.swi7.SwiProlog7  (not serializable)
+***  MODIFIED CLASS: PUBLIC io.github.prolobjectlink.prolog.jpl7.swi7.SwiProlog7  (not serializable)
 	===  CLASS FILE FORMAT VERSION: 50.0 <- 50.0
 	===  UNCHANGED INTERFACE: io.github.prolobjectlink.prolog.PrologProvider
 	===  UNCHANGED INTERFACE: io.github.prolobjectlink.prolog.PrologMapper
 	===  UNCHANGED INTERFACE: io.github.prolobjectlink.prolog.PrologParser
 	===  UNCHANGED SUPERCLASS: io.github.prolobjectlink.prolog.jpl7.JplProvider (<- io.github.prolobjectlink.prolog.jpl7.JplProvider)
+	***  MODIFIED CONSTRUCTOR: PUBLIC (<- PACKAGE_PROTECTED) SwiProlog7(io.github.prolobjectlink.prolog.PrologConverter)
 	===  UNCHANGED CONSTRUCTOR: PUBLIC SwiProlog7()
 	===  UNCHANGED METHOD: PUBLIC io.github.prolobjectlink.prolog.PrologJavaConverter getJavaConverter()
 	===  UNCHANGED METHOD: PUBLIC io.github.prolobjectlink.prolog.PrologEngine newEngine()
@@ -254,6 +256,7 @@ Comparing source compatibility of C:\eclipse-jee-photon-workspace\prolobjectlink
 	===  UNCHANGED INTERFACE: java.lang.Iterable
 	===  UNCHANGED SUPERCLASS: io.github.prolobjectlink.prolog.jpl7.JplEngine (<- io.github.prolobjectlink.prolog.jpl7.JplEngine)
 	===  UNCHANGED CONSTRUCTOR: PROTECTED SwiProlog7Engine(io.github.prolobjectlink.prolog.PrologProvider)
+	+++  NEW CONSTRUCTOR: PROTECTED(+) SwiProlog7Engine(io.github.prolobjectlink.prolog.PrologProvider, java.lang.String)
 	===  UNCHANGED METHOD: PUBLIC FINAL java.lang.String getLicense()
 	===  UNCHANGED METHOD: PUBLIC FINAL java.lang.String getName()
 	+++  NEW METHOD: PUBLIC(+) FINAL(+) java.lang.String getVendor()

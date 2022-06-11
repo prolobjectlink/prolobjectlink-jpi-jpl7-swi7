@@ -51,7 +51,7 @@ public class SwiProlog7 extends JplProvider implements PrologProvider {
 		super(new SwiProlog7Converter());
 	}
 
-	SwiProlog7(PrologConverter<Term> converter) {
+	public SwiProlog7(PrologConverter<Term> converter) {
 		super(converter);
 	}
 
