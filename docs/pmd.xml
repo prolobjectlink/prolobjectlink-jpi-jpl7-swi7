@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2022-12-28T10:51:37.965">
+<pmd version="4.2.5" timestamp="2023-01-07T12:09:34.383">
 <file name="C:\eclipse-jee-2022-03-R-workspace\prolobjectlink-jpi-jpl7-swi7\src\main\java\io\github\prolobjectlink\prolog\jpl7\swi7\SwiProlog7Engine.java">
 <violation beginline="93" endline="95" begincolumn="40" endcolumn="17" rule="EmptyIfStmt" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jpl7.swi7" class="SwiProlog7Engine" method="verify" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyIfStmt" priority="3">
 Avoid empty if statements
