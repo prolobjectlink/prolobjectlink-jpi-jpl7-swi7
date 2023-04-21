@@ -70,6 +70,8 @@ jobs:
     - run: export CLASSPATH=$CLASSPATH:$JAVA_HOME/jre/lib/rt.jar
     - run: wget https://www.swi-prolog.org/download/stable/src/swipl-7.6.4.tar.gz
     - run: tar -xzvf swipl-7.6.4.tar.gz
+    - run: pwd
+    - run: ls -l
     - run: cd swipl-7.6.4
     - run: sudo configure --with-world
     - run: make
