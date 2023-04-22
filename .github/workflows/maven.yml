@@ -74,11 +74,11 @@ jobs:
     - run: pwd
     - run: ls -l
     - run: cd swipl-7.6.4
-    - run: sudo configure --with-world
+    - run: sudo ./configure --with-world
     - run: make
     - run: sudo make install
     - run: cd packages/jpl
-    - run: sudo configure
+    - run: sudo ./configure
     - run: make
     - run: echo pwd
     - run: export SWI_HOME=/home/travis/build/prolobjectlink/prolobjectlink-jpi-jpl7-swi7/swipl-7.6.4
